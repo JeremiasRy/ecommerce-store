@@ -1,34 +1,23 @@
 import ICredentials from "../types/interfaces/credentials";
+import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const login = async (credentials:ICredentials) => {
-    let result = await fetch(`${baseUrl}/auth/login`, {
-        method: "POST",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: credentials.email,
-            password: credentials.password
-        })
-    })
-    let json = await result.json()
-    return json
+    let result = await axios.post(`${baseUrl}/auth/login`, credentials)
+    return result.data
 }
 const checkEmailAvailability = async (email:string):Promise<boolean> => {
     return true
 }
 const getUser = async (accessToken:string) => {
-    let result = await fetch(`${baseUrl}/auth/profile`, {
-        method: "GET",
+    const config = {
         headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'content-type': 'application/json'
+            Authorization: `Bearer ${accessToken}`
         }
-    })
-    let json = await result.json();
-    return json;
+    }
+    let result = await axios.get(`${baseUrl}/auth/profile`, config)
+    return result.data
 }
 
 const userService = {

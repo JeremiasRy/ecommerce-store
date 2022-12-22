@@ -7,13 +7,13 @@ const initialState:IUser | null = null;
 const userReducer = createSlice({
     name: "userReducer",
     initialState: initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (build) => {
-        build.addCase(login.fulfilled, (state, action) => {
-            return action.payload;
-        })
+        build.addCase(
+            login.fulfilled, (state, action) => {
+                return action.payload;
+            }
+        )
     }
 })
 
