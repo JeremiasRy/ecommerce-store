@@ -2,15 +2,41 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Root from './routes/Root';
+import AllProducts from './routes/AllProducts';
+import SingleProduct from './routes/SingleProduct';
+import Categories from './routes/Categories';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />
+  },
+  {
+    path: "/products",
+    element: <AllProducts />
+  },
+  {
+    path: "/product/:id",
+    element: <SingleProduct />
+  },
+  {
+    path: "/categories",
+    element: <Categories />
+  }
+    
+])
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+
       <App />
     </Provider>
   </React.StrictMode>
