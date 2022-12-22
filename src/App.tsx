@@ -8,20 +8,23 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Root />
+      element: <Root />,
+      children: [
+        {
+          path: "/products",
+          element: <AllProducts />
+        },
+        {
+          path: "/products/:id",
+          element: <SingleProduct />
+        },
+        {
+          path: "/categories",
+          element: <Categories />
+        }
+
+      ]
     },
-    {
-      path: "/products",
-      element: <AllProducts />
-    },
-    {
-      path: "/products/:id",
-      element: <SingleProduct />
-    },
-    {
-      path: "/categories",
-      element: <Categories />
-    }
   ])
   
   return (
