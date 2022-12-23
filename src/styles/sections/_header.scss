@@ -1,0 +1,38 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+header {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    height: 12vh;
+    left: 0px;
+    top: 0px;
+    background-color: $header_color;
+    box-shadow: 0 0 5px 5px black;
+}
+.header-wrapper {
+    height: 80%;
+    width: 100%;
+    @include flex-row(space-around);
+}
+.header-wrapper__nav {
+    @include flex-row(space-between);
+    vertical-align: center;
+}
+.header-wrapper__nav__nav-element {
+    width: 10vw;
+    height: 50%;
+    margin: 10px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: flex;
+    color: inherit;
+    background-color: $main_color;
+    box-shadow: 0 0 1px 1px $main_color;
+}
+.header-wrapper__nav__nav-element:hover {
+    @include basic-hover;
+    box-shadow: 0 0 1px 1px $alt_color_1;
+}

@@ -11,17 +11,9 @@ export default function Root() {
                     <h1>Welcome to the web store</h1>
                 </div>
                 <nav className="header-wrapper__nav">
-                    <ul>
-                        <li>
-                            <Link to="/products">Products</Link>
-                        </li>
-                        <li>
-                            <Link to="/categories">Categories</Link>
-                        </li>
-                        <li>
-                            {user === null ? <Link to="/login">Log in</Link> : <Link to="/profile">Profile</Link>}
-                        </li>
-                    </ul>
+                    <Link className="header-wrapper__nav__nav-element" to="/products"><p>Products</p></Link>
+                    <Link className="header-wrapper__nav__nav-element" to="/categories"><p>Categories</p></Link>
+                    {user === null ? <Link  className="header-wrapper__nav__nav-element" to="/login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="/profile"><p>Profile</p></Link>}
                 </nav>
             </div>
         </header>

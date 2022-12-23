@@ -1,0 +1,8 @@
+@import "../abstracts/variables";
+
+body {
+    background-color: $main_color !important;
+    font-family: $font_stack;
+    color: $font_color_1;
+    margin: 0;
+}

@@ -1,0 +1,9 @@
+@mixin flex-row($justify-content) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify-content;
+}
+@mixin basic-hover {
+    cursor: pointer;
+    transition: all 200ms;
+}
