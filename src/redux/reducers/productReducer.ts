@@ -8,7 +8,11 @@ const initialState:IProduct[] = [];
 const productReducer = createSlice({
     name: "productReducer",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        reset: () => {
+            return initialState
+        }
+    },
     extraReducers: (build) => {
         build.addCase(getAllProducts.fulfilled, (state, action) => {
             return action.payload;
@@ -23,6 +27,7 @@ const productReducer = createSlice({
 })
 
 export default productReducer.reducer;
+export const { reset } = productReducer.actions;
 
 export const getAllProducts = createAsyncThunk(
     "getAllProducts",

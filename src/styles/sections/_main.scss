@@ -1,0 +1,66 @@
+@import "../abstracts/mixins" ;
+@import "../abstracts/variables";
+
+main {
+    margin-top: 20px;
+}
+main h1 {
+    text-align: center;
+}
+.product-card {
+    width: 20vw;
+    height: 20vh;
+    @include basic-bg-img;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: all 200ms;
+}
+.product-card:hover {
+    @include basic-hover;
+    transform: scale(1.1);
+}
+.product-card:hover .product-card__overlay {
+    background-color: transparent;
+    transition: all 200ms;
+}
+.product-card__overlay {
+    @include basic-overlay;
+}
+.product-card h4 {
+    position: absolute;
+    margin-left: 20px;
+}
+.main__products-wrapper {
+    @include flex-row(space-evenly);
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+.main__categories-wrapper {
+    @include flex-row(space-evenly);
+    flex-wrap: wrap;
+    row-gap: 50px
+}
+.category-card {
+    width: 35vw;
+    height: 50vh;
+    @include basic-bg-img;
+    border-radius: 50px;
+    transition: all 200ms;
+}
+.category-card__overlay {
+    @include basic-overlay;
+}
+.category-card:hover {
+    @include basic-hover;
+    transform: scale(1.1);
+    transition: all 200ms;
+} 
+.category-card:hover .category-card__overlay{
+    background-color: transparent;
+    transition: all 200ms;
+} 
+.category-card h2 {
+    position: absolute;
+    margin-left: 5vw;
+    margin-top: 2vh;
+}

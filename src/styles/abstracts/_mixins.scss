@@ -7,3 +7,17 @@
     cursor: pointer;
     transition: all 200ms;
 }
+@mixin basic-overlay {
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    position: absolute;
+    background-color: black;
+    opacity: 0.4;
+    transition: all 200ms;
+}
+@mixin basic-bg-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

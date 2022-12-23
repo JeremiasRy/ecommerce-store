@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Root from './routes/Root';
-import AllProducts from './routes/AllProducts';
+import Products from './routes/Products';
 import SingleProduct from './routes/SingleProduct';
 import Categories from './routes/Categories';
+import LoginForm from "./routes/LogInForm";
 
 const App = () => {
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -12,7 +14,7 @@ const App = () => {
       children: [
         {
           path: "/products",
-          element: <AllProducts />
+          element: <Products />
         },
         {
           path: "/products/:id",
@@ -21,12 +23,15 @@ const App = () => {
         {
           path: "/categories",
           element: <Categories />
+        }, 
+        {
+          path: "/login",
+          element: <LoginForm />
         }
 
       ]
     },
   ])
-  
   return (
     <RouterProvider router={router} />
   )

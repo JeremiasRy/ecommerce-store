@@ -13,6 +13,7 @@ export default function Root() {
                 <nav className="header-wrapper__nav">
                     <Link className="header-wrapper__nav__nav-element" to="/products"><p>Products</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="/categories"><p>Categories</p></Link>
+                    <Link className="header-wrapper__nav__nav-element" to="/checkout"><p>Checkout</p></Link>
                     {user === null ? <Link  className="header-wrapper__nav__nav-element" to="/login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="/profile"><p>Profile</p></Link>}
                 </nav>
             </div>
@@ -25,7 +26,7 @@ export default function Root() {
                 <p>By Jeremias Ryttäri</p>
             </div>
             <div className="footer__img">
-                <img />
+                <img alt=""/>
             </div>
         </footer>
         </>

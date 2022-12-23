@@ -7,6 +7,7 @@ header {
   top: 0px;
   background-color: #111116;
   box-shadow: 0 0 5px 5px black;
+  z-index: 1;
 }
 
 .header-wrapper {
@@ -21,11 +22,11 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  vertical-align: center;
+  align-items: center;
 }
 
 .header-wrapper__nav__nav-element {
-  width: 10vw;
+  width: 8vw;
   height: 50%;
   margin: 10px;
   padding: 5px 10px 5px 10px;
@@ -34,13 +35,14 @@ header {
   display: flex;
   color: inherit;
   background-color: #252530;
-  box-shadow: 0 0 1px 1px #252530;
+  box-shadow: 0 0 2px 2px #252530;
+  transition: all 200ms;
 }
 
 .header-wrapper__nav__nav-element:hover {
   cursor: pointer;
   transition: all 200ms;
-  box-shadow: 0 0 1px 1px #eeff88;
+  box-shadow: 0 0 2px 2px #eeff88;
 }
 
 body {
@@ -48,6 +50,105 @@ body {
   font-family: "Helvetica-Neue", helvetica, arial, sans-serif;
   color: #ebebeb;
   margin: 0;
+}
+
+main {
+  margin-top: 20px;
+}
+
+main h1 {
+  text-align: center;
+}
+
+.product-card {
+  width: 20vw;
+  height: 20vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  border: 1px solid black;
+  transition: all 200ms;
+}
+
+.product-card:hover {
+  cursor: pointer;
+  transition: all 200ms;
+  transform: scale(1.1);
+}
+
+.product-card:hover .product-card__overlay {
+  background-color: transparent;
+  transition: all 200ms;
+}
+
+.product-card__overlay {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  position: absolute;
+  background-color: black;
+  opacity: 0.4;
+  transition: all 200ms;
+}
+
+.product-card h4 {
+  position: absolute;
+  margin-left: 20px;
+}
+
+.main__products-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  row-gap: 20px;
+}
+
+.main__categories-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  row-gap: 50px;
+}
+
+.category-card {
+  width: 35vw;
+  height: 50vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  transition: all 200ms;
+}
+
+.category-card__overlay {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  position: absolute;
+  background-color: black;
+  opacity: 0.4;
+  transition: all 200ms;
+}
+
+.category-card:hover {
+  cursor: pointer;
+  transition: all 200ms;
+  transform: scale(1.1);
+  transition: all 200ms;
+}
+
+.category-card:hover .category-card__overlay {
+  background-color: transparent;
+  transition: all 200ms;
+}
+
+.category-card h2 {
+  position: absolute;
+  margin-left: 5vw;
+  margin-top: 2vh;
 }
 
 /*# sourceMappingURL=styles.css.map */
