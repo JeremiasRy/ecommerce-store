@@ -11,7 +11,9 @@ export default function SingleProduct() {
     useEffect(() => {
         dispatch(getProduct(Number(id)))
     },[dispatch, id])
-    
+    if (product.length === 0) {
+        return <></>;
+    }
 
     return (
         <div className="single-product">

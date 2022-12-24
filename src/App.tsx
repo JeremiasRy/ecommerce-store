@@ -4,6 +4,7 @@ import Products from './routes/Products';
 import SingleProduct from './routes/SingleProduct';
 import Categories from './routes/Categories';
 import LoginForm from "./routes/LogInForm";
+import ProductsByCategory from "./routes/ProductsByCategory";
 
 const App = () => {
 
@@ -27,8 +28,11 @@ const App = () => {
         {
           path: "/login",
           element: <LoginForm />
+        },
+        {
+          path: "/products/category/:id",
+          element: <ProductsByCategory />
         }
-
       ]
     },
   ])
