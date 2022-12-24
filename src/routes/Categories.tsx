@@ -6,9 +6,11 @@ import { getAllCategories } from "../redux/reducers/categoryReducer";
 export default function Categories() {
     const categories = useAppSelector(state => state.categories);
     const dispatch = useAppDispatch();
+    
     useEffect(() => {
         dispatch(getAllCategories())
-    })
+    },[dispatch]);
+
     return (
         <>
         <h1>Categories</h1>

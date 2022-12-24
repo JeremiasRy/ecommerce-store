@@ -10,7 +10,11 @@ const categoryReducer = createSlice({
     reducers: {},
     extraReducers: (build) => {
         build.addCase(getAllCategories.fulfilled, (state, action) => {
+            console.log("täh")
             return action.payload
+        })
+        build.addCase(getCategory.fulfilled, (state, action) => {
+            return [action.payload];
         })
     }
 })
@@ -25,6 +29,17 @@ export const getAllCategories = createAsyncThunk(
             return categories;
         } catch (e:any) {
             throw new Error(e.message);
+        }
+    }
+)
+export const getCategory = createAsyncThunk(
+    "getCategory",
+    async (id:number) => {
+        try {
+            let category = await categoryService.getCategory(id);
+            return category;
+        } catch (e:any) {
+            throw new Error(e.message)
         }
     }
 )

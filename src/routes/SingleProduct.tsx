@@ -1,10 +1,30 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom"
-import { useAppSelector } from "../hooks/reduxHook";
+import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
+import { getProduct } from "../redux/reducers/productReducer";
 
 export default function SingleProduct() {
     const { id } = useParams();
-    const product = useAppSelector(state => state.products).find(product => product.id === Number(id));
+    const product = useAppSelector(state => state.products)
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getProduct(Number(id)))
+    },[dispatch, id])
+    
+
     return (
-        <>{product?.title}</>
+        <div className="single-product">
+            <h2>{product[0].title}</h2>    
+            <div className="single-product__wrapper">
+                <div className="single-product-wrapper__left-column">
+                    <img src={product[0].images[0]} />
+                </div>
+                <div className="single-product-wrapper__right-column">  
+                    <p>{product[0].category.name}</p>
+                    <p>{product[0].description}</p>
+                </div>
+            </div>
+        </div>
     )
 }

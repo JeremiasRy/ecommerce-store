@@ -18,7 +18,7 @@ const productReducer = createSlice({
             return action.payload;
         })
         build.addCase(getProduct.fulfilled, (state, action) => {
-            return action.payload;
+            return [action.payload];
         })
         build.addCase(getProductsByCategory.fulfilled, (state, action) => {
             return action.payload;

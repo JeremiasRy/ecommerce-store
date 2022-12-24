@@ -1,0 +1,10 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+//Button
+.button {
+    @include button;
+}
+.basic {
+    background-color: $alt_color_1;
+}

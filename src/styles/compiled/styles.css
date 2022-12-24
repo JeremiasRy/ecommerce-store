@@ -105,6 +105,17 @@ main h1 {
   row-gap: 20px;
 }
 
+.single-product h2 {
+  text-align: center;
+}
+
+.single-product__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  column-gap: 50px;
+}
+
 .main__categories-wrapper {
   display: flex;
   flex-direction: row;
@@ -149,6 +160,16 @@ main h1 {
   position: absolute;
   margin-left: 5vw;
   margin-top: 2vh;
+}
+
+.button {
+  border-radius: 5px;
+  height: 3em;
+  width: 10em;
+}
+
+.basic {
+  background-color: #eeff88;
 }
 
 /*# sourceMappingURL=styles.css.map */

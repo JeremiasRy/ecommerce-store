@@ -21,3 +21,8 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+@mixin button() {
+    border-radius: 5px;
+    height: 3em;
+    width: 10em;
+}
