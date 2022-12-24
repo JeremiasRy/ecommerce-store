@@ -9,8 +9,8 @@ const productReducer = createSlice({
     name: "productReducer",
     initialState: initialState,
     reducers: {
-        reset: () => {
-            return initialState
+        sortByPrice: (state) => {
+            return [...state].sort((a, b) => a.price - b.price);
         }
     },
     extraReducers: (build) => {
@@ -27,7 +27,7 @@ const productReducer = createSlice({
 })
 
 export default productReducer.reducer;
-export const { reset } = productReducer.actions;
+export const { sortByPrice } = productReducer.actions;
 
 export const getAllProducts = createAsyncThunk(
     "getAllProducts",
