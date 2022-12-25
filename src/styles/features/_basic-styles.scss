@@ -24,7 +24,7 @@
 .slideshow {
     margin: 0 auto;
     overflow: hidden;
-    width: 500px;
+    width: 30vw;
 }
 .slideshow__slider {
     white-space: nowrap;
@@ -32,9 +32,12 @@
 }
 .slideshow__slider__slide {
     display: inline-block;
-    height: 400px;
+    height: 40vh;
     width: 100%;
     border-radius: 40px;
     @include basic-bg-img;
-  }
+}
+.slideshow-buttons {
+    @include flex-row(center);
+}
 

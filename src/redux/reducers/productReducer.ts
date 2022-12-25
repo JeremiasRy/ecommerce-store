@@ -9,8 +9,13 @@ const productReducer = createSlice({
     name: "productReducer",
     initialState: initialState,
     reducers: {
-        sortByPrice: (state) => {
-            return [...state].sort((a, b) => a.price - b.price);
+        sortByPrice: (state, action) => {
+            if (action.payload === "asc") {
+                return [...state].sort((a, b) => a.price - b.price);
+            } else {
+                console.log("täh")
+                return [...state].sort((a, b) => b.price - a.price);
+            }
         }
     },
     extraReducers: (build) => {

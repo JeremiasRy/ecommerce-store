@@ -190,7 +190,7 @@ main h1 {
 .slideshow {
   margin: 0 auto;
   overflow: hidden;
-  width: 500px;
+  width: 30vw;
 }
 
 .slideshow__slider {
@@ -200,12 +200,18 @@ main h1 {
 
 .slideshow__slider__slide {
   display: inline-block;
-  height: 400px;
+  height: 40vh;
   width: 100%;
   border-radius: 40px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.slideshow-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */
