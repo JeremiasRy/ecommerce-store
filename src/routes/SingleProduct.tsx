@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
+import SlideShow from "../components/Slideshow";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/checkoutReducer";
 import { getProduct } from "../redux/reducers/productReducer";
@@ -25,7 +26,7 @@ export default function SingleProduct() {
             <h2>{product[0].title}</h2>    
             <div className="single-product__wrapper">
                 <div className="single-product-wrapper__left-column">
-                    <img src={product[0].images[0]} />
+                    <SlideShow images={product[0].images} />
                 </div>
                 <div className="single-product-wrapper__right-column">  
                     <p>{product[0].category.name}</p>

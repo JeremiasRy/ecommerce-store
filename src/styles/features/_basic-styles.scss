@@ -19,3 +19,22 @@
 .remove {
     background-color: $alt_color2;
 }
+
+//slideshow
+.slideshow {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 500px;
+}
+.slideshow__slider {
+    white-space: nowrap;
+    transition: ease 1000ms;
+}
+.slideshow__slider__slide {
+    display: inline-block;
+    height: 400px;
+    width: 100%;
+    border-radius: 40px;
+    @include basic-bg-img;
+  }
+
