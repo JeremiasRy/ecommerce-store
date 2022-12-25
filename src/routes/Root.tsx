@@ -16,7 +16,7 @@ export default function Root() {
                     <Link className="header-wrapper__nav__nav-element" to="/products"><p>Products</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="/categories"><p>Categories</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="/checkout"><p>Checkout {itemsInCheckout}</p></Link>
-                    {user === null ? <Link  className="header-wrapper__nav__nav-element" to="/login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="/profile"><p>Profile</p></Link>}
+                    {user.length === 0 ? <Link  className="header-wrapper__nav__nav-element" to="/login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="/profile"><p>{user[0].name}</p></Link>}
                 </nav>
             </div>
         </header>

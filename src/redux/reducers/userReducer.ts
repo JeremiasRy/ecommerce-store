@@ -3,21 +3,27 @@ import userService from "../../services/user";
 import ICredentials from "../../types/interfaces/credentials";
 import IUser from "../../types/interfaces/user";
 
-const initialState:IUser | null = null; 
+const initialState:IUser[] = [];
+
 const userReducer = createSlice({
     name: "userReducer",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        logout: () => {
+            return initialState;
+        }
+    },
     extraReducers: (build) => {
         build.addCase(
             login.fulfilled, (state, action) => {
-                return action.payload;
+                return [action.payload];
             }
         )
     }
 })
 
 export default userReducer.reducer
+export const {logout} = userReducer.actions;
 
 export const login = createAsyncThunk(
     "login", 

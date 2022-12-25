@@ -1,5 +1,35 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
+import { logout } from "../redux/reducers/userReducer"
+
 export default function Profile() {
+    const user = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (user.length === 0) {
+            navigate("/");
+        }
+    }, [navigate, user]);
+
+    if (user.length === 0) {
+        return (
+            <></>
+        );
+    };
+
     return (
-        <>profile page</>
+        <div className="profile-page">
+            <h1>Your profile</h1>
+            <p>username: {user[0].name}</p>
+            <p>Role: {user[0].role}</p>
+            <button 
+            className="button remove" 
+            onClick={() => {
+                dispatch(logout());
+                navigate("/")}}>Log out</button>
+        </div>
     )
 }

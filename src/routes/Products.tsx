@@ -16,7 +16,7 @@ export default function Products() {
         <h1>All products</h1>
         <button className="button basic" onClick={() => dispatch(sortByPrice())}>Sort</button>
         <div className="main__products-wrapper">
-            {products.map(product => <ProductCard product={product}/>)}
+            {products.map(product => <ProductCard key={product.id} product={product}/>)}
         </div>
         </>
     );

@@ -6,6 +6,7 @@ import Categories from './routes/Categories';
 import Login from "./routes/Login";
 import ProductsByCategory from "./routes/ProductsByCategory";
 import Checkout from "./routes/Checkout";
+import Profile from "./routes/Profile";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const App = () => {
         {
           path: "/checkout",
           element: <Checkout />
+        },
+        {
+          path: "/profile",
+          element: <Profile />
         }
       ]
     },

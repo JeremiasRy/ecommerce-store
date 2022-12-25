@@ -1,5 +1,8 @@
+import UserForm from "../components/UserForm"
+import { login } from "../redux/reducers/userReducer"
+
 export default function Login() {
     return (
-        <>Login form</>
+        <UserForm submitAction={login}/>
     )
 }
