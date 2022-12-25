@@ -165,7 +165,7 @@ main h1 {
 .button {
   border-radius: 5px;
   height: 3em;
-  width: 10em;
+  width: 7em;
   cursor: pointer;
   transition: all 200ms;
 }
@@ -176,7 +176,7 @@ main h1 {
 
 .small {
   height: 1.5em;
-  width: 5vw;
+  font-size: small;
 }
 
 .basic {

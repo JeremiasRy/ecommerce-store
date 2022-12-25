@@ -10,7 +10,13 @@ const getProduct = async (id:number) => {
     let result = await axios.get(`${baseUrl}/products/${id}`);
     return result.data;
 };
+const deleteProduct = async (id:number) => {
+    let result = await axios.delete(`${baseUrl}/products/${id}`)
+    console.log(result);
+    return result
+}
 const productService = {
+    deleteProduct,
     getProducts,
     getProduct
 };

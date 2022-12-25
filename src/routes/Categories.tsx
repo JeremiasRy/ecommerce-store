@@ -15,7 +15,7 @@ export default function Categories() {
         <>
         <h1>Categories</h1>
         <div className="main__categories-wrapper">
-            {categories.map(category => <CategoryCard category={category}/>)}
+            {categories.map(category => <CategoryCard key={category.id} category={category}/>)}
         </div>
         </>
     )
