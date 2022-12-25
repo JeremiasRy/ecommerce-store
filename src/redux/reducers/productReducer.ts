@@ -16,6 +16,9 @@ const productReducer = createSlice({
                 console.log("täh")
                 return [...state].sort((a, b) => b.price - a.price);
             }
+        },
+        filterByName: (state, action) => {
+            return state.filter(product => product.title.toLowerCase().includes(action.payload.toLowerCase()));
         }
     },
     extraReducers: (build) => {
@@ -32,7 +35,7 @@ const productReducer = createSlice({
 })
 
 export default productReducer.reducer;
-export const { sortByPrice } = productReducer.actions;
+export const { sortByPrice, filterByName } = productReducer.actions;
 
 export const getAllProducts = createAsyncThunk(
     "getAllProducts",

@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import RadioButton from "../components/RadioButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getAllProducts, sortByPrice } from "../redux/reducers/productReducer";
+import { filterByName, getAllProducts, sortByPrice } from "../redux/reducers/productReducer";
 
 export default function Products() {
     const [direction, setDirection] = useState<"asc" | "desc">("asc");
+    const [find, setFind] = useState("");
     const products = useAppSelector(state => state.products);
     const dispatch = useAppDispatch();
 
-    console.log(direction);
     useEffect(() => {
-        dispatch(getAllProducts())
-    }, [])
+        if (find === "") {
+            dispatch(getAllProducts())
+        } else {
+            dispatch(filterByName(find));
+        }
+    }, [find])
 
     return (
         <div className="all-products">
@@ -35,6 +39,7 @@ export default function Products() {
                 checked={direction === "desc"} 
                 setDirection={setDirection}/>
             </div>
+            <input type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>
         </div>
         <div className="main__products-wrapper">
             {products.map(product => <ProductCard key={product.id} product={product}/>)}
