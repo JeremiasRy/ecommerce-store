@@ -3,6 +3,8 @@ import { useAppSelector } from "../hooks/reduxHook";
 
 export default function Root() {
     const user = useAppSelector(state => state.user);
+    const checkout = useAppSelector(state => state.checkout);
+    const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
     return (
         <>
         <header>
@@ -13,7 +15,7 @@ export default function Root() {
                 <nav className="header-wrapper__nav">
                     <Link className="header-wrapper__nav__nav-element" to="/products"><p>Products</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="/categories"><p>Categories</p></Link>
-                    <Link className="header-wrapper__nav__nav-element" to="/checkout"><p>Checkout</p></Link>
+                    <Link className="header-wrapper__nav__nav-element" to="/checkout"><p>Checkout {itemsInCheckout}</p></Link>
                     {user === null ? <Link  className="header-wrapper__nav__nav-element" to="/login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="/profile"><p>Profile</p></Link>}
                 </nav>
             </div>

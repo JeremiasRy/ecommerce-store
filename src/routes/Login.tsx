@@ -1,4 +1,4 @@
-export default function LoginForm() {
+export default function Login() {
     return (
         <>Login form</>
     )

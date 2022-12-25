@@ -3,11 +3,11 @@ import Root from './routes/Root';
 import Products from './routes/Products';
 import SingleProduct from './routes/SingleProduct';
 import Categories from './routes/Categories';
-import LoginForm from "./routes/LogInForm";
+import Login from "./routes/Login";
 import ProductsByCategory from "./routes/ProductsByCategory";
+import Checkout from "./routes/Checkout";
 
 const App = () => {
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -27,11 +27,15 @@ const App = () => {
         }, 
         {
           path: "/login",
-          element: <LoginForm />
+          element: <Login />
         },
         {
           path: "/products/category/:id",
           element: <ProductsByCategory />
+        },
+        {
+          path: "/checkout",
+          element: <Checkout />
         }
       ]
     },

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
+import { addToCart } from "../redux/reducers/checkoutReducer";
 import { getProduct } from "../redux/reducers/productReducer";
 
 export default function SingleProduct() {
@@ -11,6 +12,7 @@ export default function SingleProduct() {
     useEffect(() => {
         dispatch(getProduct(Number(id)))
     },[dispatch, id])
+
     if (product.length === 0) {
         return <></>;
     }
@@ -25,6 +27,8 @@ export default function SingleProduct() {
                 <div className="single-product-wrapper__right-column">  
                     <p>{product[0].category.name}</p>
                     <p>{product[0].description}</p>
+                    <p>{product[0].price}€</p>
+                    <button className="button basic" onClick={() => dispatch(addToCart(product[0]))}>Add to cart</button>
                 </div>
             </div>
         </div>

@@ -10,7 +10,6 @@ const categoryReducer = createSlice({
     reducers: {},
     extraReducers: (build) => {
         build.addCase(getAllCategories.fulfilled, (state, action) => {
-            console.log("täh")
             return action.payload
         })
         build.addCase(getCategory.fulfilled, (state, action) => {

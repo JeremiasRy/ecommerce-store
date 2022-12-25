@@ -166,10 +166,25 @@ main h1 {
   border-radius: 5px;
   height: 3em;
   width: 10em;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.button:hover {
+  box-shadow: 0 0 2px 2px black;
+}
+
+.small {
+  height: 1.5em;
+  width: 5vw;
 }
 
 .basic {
   background-color: #eeff88;
+}
+
+.remove {
+  background-color: #f32f15;
 }
 
 /*# sourceMappingURL=styles.css.map */
