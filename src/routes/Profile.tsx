@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
+import { addNotification } from "../redux/reducers/notificationReducer";
 import { logout } from "../redux/reducers/userReducer"
+import INotification from "../types/interfaces/notification";
 
 export default function Profile() {
     const user = useAppSelector(state => state.user)
@@ -29,6 +31,12 @@ export default function Profile() {
             className="button remove" 
             onClick={() => {
                 dispatch(logout());
+                let notification:INotification = {
+                    message: "Logged out!",
+                    type: "notification",
+                    timeoutInSec: 3,
+                }
+                dispatch(addNotification(notification))
                 navigate("/")}}>Log out</button>
         </div>
     )

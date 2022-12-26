@@ -1,7 +1,10 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AnyAction, createSlice, ThunkAction } from "@reduxjs/toolkit";
 import userService from "../../services/user";
 import ICredentials from "../../types/interfaces/credentials";
+import INotification from "../../types/interfaces/notification";
 import IUser from "../../types/interfaces/user";
+import { RootState } from "../store";
+import { addNotification } from "./notificationReducer";
 
 const initialState:IUser[] = [];
 
@@ -9,31 +12,37 @@ const userReducer = createSlice({
     name: "userReducer",
     initialState: initialState,
     reducers: {
+        loginUser: (state, action) => {
+            return [action.payload]
+        },
         logout: () => {
             return initialState;
         }
     },
-    extraReducers: (build) => {
-        build.addCase(
-            login.fulfilled, (state, action) => {
-                return [action.payload];
-            }
-        )
-    }
 })
 
 export default userReducer.reducer
-export const {logout} = userReducer.actions;
+export const { logout, loginUser } = userReducer.actions;
 
-export const login = createAsyncThunk(
-    "login", 
-    async (credentials:ICredentials) => {
-        try {
-            let result = await userService.login(credentials)
-            let user = await userService.getUser(result.access_token)
-            return user
-        } catch (e:any) {
-            throw new Error(e.message);
+export const login = (credentials:ICredentials):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    try {
+        let result = await userService.login(credentials)
+        let user:IUser = await userService.getUser(result.access_token)
+        let notification:INotification = {
+            message: `${user.name} logged in!`,
+            type: "notification",
+            timeoutInSec: 3
         }
-    },
-)
+        dispatch(loginUser(user));
+        dispatch(addNotification(notification))
+    } catch (e:any) {
+        let notification:INotification = {
+            message: "Log in failed",
+            type: "alert",
+            timeoutInSec: 3
+        }
+        dispatch(addNotification(notification));
+    }
+    
+    
+}

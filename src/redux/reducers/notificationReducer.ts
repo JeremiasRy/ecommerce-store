@@ -25,7 +25,6 @@ export const addNotification = (notification:INotification):ThunkAction<void, Ro
     if (timer) {
         clearTimeout(timer);
     }
-    console.log(notification);
     timer = setTimeout(() => {
         dispatch(removeNotification());
     }, notification.timeoutInSec * 1000);

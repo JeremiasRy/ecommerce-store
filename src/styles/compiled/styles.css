@@ -232,25 +232,13 @@ main h1 {
 
 .closed {
   opacity: 0;
+  transform: translate(42vw, -10vh);
+  transition: all 400ms ease-in;
 }
 
 .open {
-  animation: 3s open-notification;
-}
-
-@keyframes open-notification {
-  0% {
-    transform: translate(42vw, -10vh);
-  }
-  25% {
-    transform: translate(42vw, 12vh);
-  }
-  75% {
-    transform: translate(42vw, 12vh);
-  }
-  100% {
-    transform: translate(42vw, -10vh);
-  }
+  transform: translate(42vw, 12vh);
+  transition: all 400ms ease-in;
 }
 
 /*# sourceMappingURL=styles.css.map */
