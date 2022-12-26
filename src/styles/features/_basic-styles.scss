@@ -40,4 +40,38 @@
 .slideshow-buttons {
     @include flex-row(center);
 }
+//notification bar
+.notification-bar {
+    position: absolute;
+    width: 15vw;
+    height: 5vh;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 2px $main_color;
+    background-color: $alt_color3;
+    color: $main_color;
+    z-index: 2;
+}
+.notification-bar p {
+    text-align: center;
+    font-size: 0.9em;
+}
+.closed {
+    opacity: 0;
+}
+.open {
+    animation: 3s open-notification;
+}
+@keyframes open-notification {
+    0% {
+        transform: translate(42vw, -10vh);
+    } 25% {
+        transform: translate(42vw, 12vh);
+    } 75% {
+        transform: translate(42vw, 12vh);
+    } 100% {
+        transform: translate(42vw, -10vh);
+    }
+}
+
+
 

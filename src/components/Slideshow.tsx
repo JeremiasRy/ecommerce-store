@@ -14,7 +14,7 @@ export default function SlideShow(props: {images:string[]}) {
         resetTimeout();
         timeout.current = setTimeout(() => {
             setIndex(prevIndex => prevIndex === props.images.length - 1 ? 0 : prevIndex + 1)
-        }, 3000)
+        }, 2000)
     },[index, props])
     return (
         <div className="slideshow-wrapper">

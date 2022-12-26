@@ -4,7 +4,9 @@ import SlideShow from "../components/Slideshow";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/checkoutReducer";
 import { getProduct } from "../redux/reducers/productReducer";
+import { addNotification } from "../redux/reducers/notificationReducer";
 import productService from "../services/product";
+import INotification from "../types/interfaces/notification";
 
 export default function SingleProduct() {
     const { id } = useParams();
@@ -32,7 +34,16 @@ export default function SingleProduct() {
                     <p>{product[0].category.name}</p>
                     <p>{product[0].description}</p>
                     <p>{product[0].price}€</p>
-                    <button className="button basic" onClick={() => dispatch(addToCart(product[0]))}>Add to cart</button>
+                    <button 
+                    className="button basic" 
+                    onClick={() => {
+                        dispatch(addToCart(product[0]));
+                        let notification:INotification = {
+                            message: `Added ${product[0].title} to cart!`,
+                            type: "notification",
+                            timeoutInSec: 3,
+                        }
+                        dispatch(addNotification(notification))}}>Add to cart</button>
                     {user.length !== 0 && user[0].role === "admin" && 
                     <div className="single-product-wrapper__right-column__admin-actions">
                         <h4>Edit product</h4>

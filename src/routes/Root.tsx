@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import Notification from "../components/NotificationBar";
 import { useAppSelector } from "../hooks/reduxHook";
 
 export default function Root() {
@@ -7,6 +8,7 @@ export default function Root() {
     const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
     return (
         <>
+        <Notification />
         <header>
             <div className="header-wrapper">
                 <div className="header-wrapper__header">

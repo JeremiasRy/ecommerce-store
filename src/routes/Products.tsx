@@ -16,7 +16,7 @@ export default function Products() {
         } else {
             dispatch(filterByName(find));
         }
-    }, [find])
+    }, [dispatch, find])
 
     return (
         <div className="all-products">
