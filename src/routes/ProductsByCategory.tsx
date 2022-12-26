@@ -23,6 +23,7 @@ export default function ProductsByCategory() {
     return (
         <div className="products-by-category">
             <h1>{category[0].name}</h1>
+            <p>Our {category[0].name} are the most prestigious of their kind</p>
             <div className="main__products-wrapper">
                 {products.map(product => <ProductCard key={product.id} product={product}/>)}
             </div>

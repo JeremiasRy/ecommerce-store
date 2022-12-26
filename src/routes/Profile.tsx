@@ -31,13 +31,7 @@ export default function Profile() {
             className="button remove" 
             onClick={() => {
                 dispatch(logout());
-                let notification:INotification = {
-                    message: "Logged out!",
-                    type: "notification",
-                    timeoutInSec: 3,
-                }
-                dispatch(addNotification(notification))
-                navigate("/")}}>Log out</button>
+                navigate("/home")}}>Log out</button>
         </div>
     )
 }

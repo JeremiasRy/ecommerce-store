@@ -1,4 +1,3 @@
-import { AsyncThunk } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { useAppDispatch, } from "../hooks/reduxHook";
 import ICredentials from "../types/interfaces/credentials";

@@ -7,6 +7,7 @@ export default function ProductCard(props: {product:IProduct}) {
         <div className="product-card" key={props.product.id} onClick={() => navigate(`/products/${props.product.id}`)} style={{backgroundImage: `url(${props.product.images[0]})`}}>
             <div className="product-card__overlay"></div>
             <h4>{props.product.title}</h4>
+            <p>{props.product.price}€</p>
         </div>
     )
 }

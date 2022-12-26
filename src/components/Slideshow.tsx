@@ -26,7 +26,7 @@ export default function SlideShow(props: {images:string[]}) {
                 </div>
             </div>
             <div className="slideshow-buttons">
-                {props.images.map((_, idx) => <button onClick={() => setIndex(idx)}>{idx + 1}</button>)}
+                {props.images.map((_, idx) => <button key={idx} onClick={() => setIndex(idx)}>{idx + 1}</button>)}
             </div>
         </div>
     )

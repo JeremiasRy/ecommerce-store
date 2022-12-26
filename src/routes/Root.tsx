@@ -1,10 +1,11 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Notification from "../components/NotificationBar";
 import { useAppSelector } from "../hooks/reduxHook";
 
 export default function Root() {
     const user = useAppSelector(state => state.user);
     const checkout = useAppSelector(state => state.checkout);
+    const navigate = useNavigate()
     const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
     return (
         <>
@@ -12,7 +13,7 @@ export default function Root() {
         <header>
             <div className="header-wrapper">
                 <div className="header-wrapper__header">
-                    <h1>Welcome to the web store</h1>
+                    <h1 className="header-wrapper__header" onClick={() => navigate("/home")}>Web store</h1>
                 </div>
                 <nav className="header-wrapper__nav">
                     <Link className="header-wrapper__nav__nav-element" to="/products"><p>Products</p></Link>

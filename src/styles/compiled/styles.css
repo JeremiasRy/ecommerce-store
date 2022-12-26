@@ -45,6 +45,12 @@ header {
   box-shadow: 0 0 2px 2px #eeff88;
 }
 
+.header-wrapper__header:hover {
+  cursor: pointer;
+  transition: all 200ms;
+  transform: scale(1.02);
+}
+
 body {
   background-color: #252530 !important;
   font-family: "Helvetica-Neue", helvetica, arial, sans-serif;
@@ -95,6 +101,12 @@ main h1 {
 .product-card h4 {
   position: absolute;
   margin-left: 20px;
+}
+
+.product-card p {
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 120px;
 }
 
 .main__products-wrapper {
@@ -160,6 +172,12 @@ main h1 {
   position: absolute;
   margin-left: 5vw;
   margin-top: 2vh;
+}
+
+.home-page__content-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .button {

@@ -15,14 +15,14 @@ const userReducer = createSlice({
         loginUser: (state, action) => {
             return [action.payload]
         },
-        logout: () => {
+        logoutUser: () => {
             return initialState;
         }
     },
 })
 
 export default userReducer.reducer
-export const { logout, loginUser } = userReducer.actions;
+export const { logoutUser, loginUser } = userReducer.actions;
 
 export const login = (credentials:ICredentials):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     try {
@@ -43,6 +43,13 @@ export const login = (credentials:ICredentials):ThunkAction<void, RootState, unk
         }
         dispatch(addNotification(notification));
     }
-    
-    
+}
+export const logout = ():ThunkAction<void, RootState, unknown, AnyAction> => dispatch => {
+    let notification:INotification = {
+        message: "Logged out!",
+        type: "notification",
+        timeoutInSec: 3,
+    } 
+    dispatch(addNotification(notification));
+    dispatch(logoutUser());
 }

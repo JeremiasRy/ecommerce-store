@@ -7,6 +7,7 @@ import Login from "./routes/Login";
 import ProductsByCategory from "./routes/ProductsByCategory";
 import Checkout from "./routes/Checkout";
 import Profile from "./routes/Profile";
+import Home from "./routes/Home";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const App = () => {
       path: "/",
       element: <Root />,
       children: [
+        {
+          path: "/home",
+          element: <Home />
+        },
         {
           path: "/products",
           element: <Products />

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserForm from "../components/UserForm"
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
-import { addNotification } from "../redux/reducers/notificationReducer";
+import { useAppSelector } from "../hooks/reduxHook"
 import { login } from "../redux/reducers/userReducer"
 
 export default function Login() {
@@ -11,9 +10,9 @@ export default function Login() {
 
     useEffect(() => {
         if (user.length !== 0) {
-            navigate("/");
+            navigate("/home");
         } 
-    }, [user]);
+    }, [user, navigate]);
     
     return (
         <UserForm submitAction={login}/>

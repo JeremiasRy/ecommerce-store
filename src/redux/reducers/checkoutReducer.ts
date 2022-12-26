@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import ICheckoutItem from "../../types/interfaces/checkoutItem";
-import IProduct from "../../types/interfaces/product";
 
 const initialState:ICheckoutItem[] = []
 

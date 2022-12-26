@@ -38,3 +38,7 @@ header {
     @include basic-hover;
     box-shadow: 0 0 2px 2px $alt_color_1;
 }
+.header-wrapper__header:hover {
+    @include basic-hover;
+    transform: scale(1.02);
+}
