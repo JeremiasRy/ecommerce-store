@@ -20,13 +20,13 @@ export default function Root() {
                     <h1 className="header-wrapper__header" onClick={() => navigate("/home")}>Web store</h1>
                 </div>
                 <nav className="header-wrapper__nav">
-                    <Link className="header-wrapper__nav__nav-element" to="home/products/" 
+                    <Link className="header-wrapper__nav__nav-element" to="products" 
                     onClick={() => {
                         dispatch(getAllCategories()); 
                         dispatch(getAllProducts())}}><p>Products</p></Link>
-                    <Link className="header-wrapper__nav__nav-element" to="home/categories/"><p>Categories</p></Link>
-                    <Link className="header-wrapper__nav__nav-element" to="home/checkout/"><p>Checkout {itemsInCheckout}</p></Link>
-                    {user.length === 0 ? <Link  className="header-wrapper__nav__nav-element" to="/home/login/"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="home/profile"><p>{user[0].name}</p></Link>}
+                    <Link className="header-wrapper__nav__nav-element" to="categories"><p>Categories</p></Link>
+                    <Link className="header-wrapper__nav__nav-element" to="checkout"><p>Checkout {itemsInCheckout}</p></Link>
+                    {user.length === 0 ? <Link  className="header-wrapper__nav__nav-element" to="login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="profile"><p>{user[0].name}</p></Link>}
                 </nav>
             </div>
         </header>

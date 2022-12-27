@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import RadioButton from "../components/RadioButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { getAllCategories } from "../redux/reducers/categoryReducer";
+import { addNotification, createNotification } from "../redux/reducers/notificationReducer";
 import { filterByName, getAllProducts, getProductsByCategory, sortByPrice } from "../redux/reducers/productReducer";
 
 export default function Products() {
@@ -12,20 +14,17 @@ export default function Products() {
     const categories = useAppSelector(state => state.categories);
     const dispatch = useAppDispatch();
 
-    console.log(categories.length)
-    console.log(products.length)
-
     useEffect(() => {
         if (find !== "") {
-            dispatch(filterByName(find))
-        } else {
-            if (categories.length === 1) {
-                dispatch(getProductsByCategory(categories[0].id))
-            } else {
-                dispatch(getAllProducts())
-            }    
-        };
-    }, [dispatch, find, categories])
+            dispatch(filterByName(find));  
+        }
+    }, [find])
+
+    if (categories.length === 1 && products.length === 0) {
+        dispatch(addNotification(createNotification("Category does not have any products", "notification", 3)))
+        dispatch(getAllProducts());
+        dispatch(getAllCategories());
+    }
 
 
     return (
@@ -50,7 +49,7 @@ export default function Products() {
                 checked={direction === "desc"} 
                 setDirection={setDirection}/>
             </div>
-            <input type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>
+            {categories.length > 1 && <input type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>}
         </div>
         <div className="main__products-wrapper">
             {products.length === 0 ? <h4>Can't find anything with {find}</h4> : products.map(product => <ProductCard key={product.id} product={product}/>)}

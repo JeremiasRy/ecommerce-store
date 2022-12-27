@@ -17,34 +17,31 @@ const App = () => {
         {
           path: "home",
           element: <Home />,
-          children: [
-            {
-              path: "products",
-              element: <Products />,
-
-            },
-            {
-              path: "products/:id",
-              element: <SingleProduct />
-            },
-            {
-              path: "categories",
-              element: <Categories />
-            }, 
-            {
-              path: "login",
-              element: <Login />
-            },
-            {
-              path: "checkout",
-              element: <Checkout />
-            },
-            {
-              path: "profile",
-              element: <Profile />
-            }
-          ]
         },
+        {
+          path: "products",
+          element: <Products />,
+        },
+        {
+          path: "products/:id",
+          element: <SingleProduct />
+        },
+        {
+          path: "categories",
+          element: <Categories />
+        }, 
+        {
+          path: "login",
+          element: <Login />
+        },
+        {
+          path: "checkout",
+          element: <Checkout />
+        },
+        {
+          path: "profile",
+          element: <Profile />
+        }
       ]
     },
   ])
