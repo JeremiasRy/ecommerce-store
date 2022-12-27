@@ -1,6 +1,6 @@
 import { AnyAction, createSlice, ThunkAction } from "@reduxjs/toolkit";
 import userService from "../../services/user";
-import ICredentials from "../../types/interfaces/credentials";
+import ICredentials, { IRegister } from "../../types/interfaces/credentials";
 import INotification from "../../types/interfaces/notification";
 import IUser from "../../types/interfaces/user";
 import { RootState } from "../store";
@@ -53,3 +53,34 @@ export const logout = ():ThunkAction<void, RootState, unknown, AnyAction> => dis
     dispatch(addNotification(notification));
     dispatch(logoutUser());
 }
+export const registerUser = (register:IRegister):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    try {
+        let isAvailable = await userService.checkEmailAvailability(register.email);
+        if (!isAvailable.isAvailable) {
+            let notification:INotification = {
+                message: "E-mail is already in use",
+                type: "notification",
+                timeoutInSec: 3,
+            }
+            dispatch(addNotification(notification))
+            return;
+        }
+        await userService.createNewUser(register);
+        let notification:INotification = {
+            message: "Register success! " + register.name,
+            type: "notification",
+            timeoutInSec: 3,
+        }
+        dispatch(addNotification(notification));
+        dispatch(login({email: register.email, password: register.password}));
+    } catch (e:any) {
+        let notification:INotification = {
+            message: "Register failed",
+            type: "alert",
+            timeoutInSec: 3,
+        }
+        dispatch(addNotification(notification));
+    }
+
+}
+

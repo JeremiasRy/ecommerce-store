@@ -100,13 +100,13 @@ main h1 {
 
 .product-card h4 {
   position: absolute;
-  margin-left: 20px;
+  margin-left: 2vw;
 }
 
 .product-card p {
   position: absolute;
-  margin-left: 20px;
-  margin-top: 120px;
+  margin-left: 3vw;
+  margin-top: 16vh;
 }
 
 .main__products-wrapper {
@@ -175,9 +175,55 @@ main h1 {
 }
 
 .home-page__content-wrapper {
+  padding-top: 5vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.home-page p {
+  text-align: center;
+}
+
+.login-p {
+  text-align: center;
+}
+
+.login-sign-up {
+  color: #eeff88;
+}
+
+.login-sign-up:hover {
+  cursor: pointer;
+  transition: all 200ms;
+  color: blue;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  justify-content: center;
+}
+
+.login-form input {
+  background-color: #252530;
+  color: #ebebeb;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  width: 15vw;
+  height: 2em;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 1px #ebebeb solid;
+  transition: all 200ms ease-in-out 200ms;
+}
+
+.login-form button {
+  margin: 0 auto;
 }
 
 .button {

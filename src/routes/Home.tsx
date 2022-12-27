@@ -10,7 +10,7 @@ export default function Home() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (products.length === 0) {
+        if (products.length <= 5) {
             dispatch(getAllProducts())
         }
     }, [products, dispatch])
@@ -22,7 +22,7 @@ export default function Home() {
         }
         return favourites;
     }
-    if (products.length === 0) {
+    if (products.length <= 5) {
         return <></>;
     }
     return (
@@ -35,7 +35,6 @@ export default function Home() {
                     <p>We here at web store want to give you the best products!</p>
                 </div>
                 <div className="home-page_content-wrapper__right">
-                    <h4>Our favorites</h4>
                     <SlideShow images={favoriteProducts().map(product => product.images[0])}/>
                 </div>
             </div>

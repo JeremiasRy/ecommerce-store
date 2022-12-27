@@ -1,4 +1,4 @@
-import ICredentials from "../types/interfaces/credentials";
+import ICredentials, { IRegister } from "../types/interfaces/credentials";
 import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -7,8 +7,13 @@ const login = async (credentials:ICredentials) => {
     let result = await axios.post(`${baseUrl}/auth/login`, credentials)
     return result.data
 }
-const checkEmailAvailability = async (email:string):Promise<boolean> => {
-    return true
+const checkEmailAvailability = async (email:string) => {
+    let result = await axios.post(`${baseUrl}/users/is-available`, {email: email}) 
+    return result.data;
+}
+const createNewUser = async (register:IRegister) => {
+    let result = await axios.post(`${baseUrl}/users/`, register)
+    return result.data;
 }
 const getUser = async (accessToken:string) => {
     const config = {
@@ -24,6 +29,7 @@ const userService = {
     login,
     checkEmailAvailability,
     getUser,
+    createNewUser,
 }
 
 export default userService;

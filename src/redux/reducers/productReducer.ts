@@ -13,7 +13,6 @@ const productReducer = createSlice({
             if (action.payload === "asc") {
                 return [...state].sort((a, b) => a.price - b.price);
             } else {
-                console.log("täh")
                 return [...state].sort((a, b) => b.price - a.price);
             }
         },
