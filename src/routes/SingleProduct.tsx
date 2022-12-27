@@ -1,23 +1,18 @@
-import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import SlideShow from "../components/Slideshow";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/checkoutReducer";
-import { getProduct } from "../redux/reducers/productReducer";
 import { addNotification } from "../redux/reducers/notificationReducer";
 import productService from "../services/product";
 import INotification from "../types/interfaces/notification";
 
 export default function SingleProduct() {
     const { id } = useParams();
-    const product = useAppSelector(state => state.products)
+    const product = useAppSelector(state => state.products).filter(product => product.id === Number(id));
     const user = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        dispatch(getProduct(Number(id)))
-    }, [dispatch, id])
 
     if (product.length === 0) {
         return <></>;

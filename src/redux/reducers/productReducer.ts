@@ -63,6 +63,10 @@ export const getProductsByCategory = createAsyncThunk(
     async (categoryId:number) => {
         try {
             let products = await categoryService.getProductsByCategory(categoryId);
+            if (products.length === 0) {
+                console.log("täh");
+                return [];
+            }
             return products;
         } catch (e:any) {
             throw new Error(e.message)

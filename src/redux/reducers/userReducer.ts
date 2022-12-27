@@ -4,7 +4,7 @@ import ICredentials, { IRegister } from "../../types/interfaces/credentials";
 import INotification from "../../types/interfaces/notification";
 import IUser from "../../types/interfaces/user";
 import { RootState } from "../store";
-import { addNotification } from "./notificationReducer";
+import { addNotification, createNotification } from "./notificationReducer";
 
 const initialState:IUser[] = [];
 
@@ -26,43 +26,23 @@ export const { logoutUser, loginUser } = userReducer.actions;
 
 export const login = (credentials:ICredentials):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     try {
-        let result = await userService.login(credentials)
-        let user:IUser = await userService.getUser(result.access_token)
-        let notification:INotification = {
-            message: `${user.name} logged in!`,
-            type: "notification",
-            timeoutInSec: 3
-        }
+        let result = await userService.login(credentials);
+        let user:IUser = await userService.getUser(result.access_token);
         dispatch(loginUser(user));
-        dispatch(addNotification(notification))
+        dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
     } catch (e:any) {
-        let notification:INotification = {
-            message: "Log in failed",
-            type: "alert",
-            timeoutInSec: 3
-        }
-        dispatch(addNotification(notification));
+        dispatch(addNotification(createNotification("Log in failed", "alert", 3)));
     }
 }
 export const logout = ():ThunkAction<void, RootState, unknown, AnyAction> => dispatch => {
-    let notification:INotification = {
-        message: "Logged out!",
-        type: "notification",
-        timeoutInSec: 3,
-    } 
-    dispatch(addNotification(notification));
+    dispatch(addNotification(createNotification("Logged out!", "notification", 3)));
     dispatch(logoutUser());
 }
 export const registerUser = (register:IRegister):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     try {
         let isAvailable = await userService.checkEmailAvailability(register.email);
         if (!isAvailable.isAvailable) {
-            let notification:INotification = {
-                message: "E-mail is already in use",
-                type: "notification",
-                timeoutInSec: 3,
-            }
-            dispatch(addNotification(notification))
+            dispatch(addNotification(createNotification("E-mail is already in use", "notification", 3)))
             return;
         }
         await userService.createNewUser(register);
@@ -74,12 +54,7 @@ export const registerUser = (register:IRegister):ThunkAction<void, RootState, un
         dispatch(addNotification(notification));
         dispatch(login({email: register.email, password: register.password}));
     } catch (e:any) {
-        let notification:INotification = {
-            message: "Register failed",
-            type: "alert",
-            timeoutInSec: 3,
-        }
-        dispatch(addNotification(notification));
+        dispatch(addNotification(createNotification("Register failed", "alert", 3)));
     }
 
 }

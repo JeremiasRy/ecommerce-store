@@ -4,7 +4,6 @@ import Products from './routes/Products';
 import SingleProduct from './routes/SingleProduct';
 import Categories from './routes/Categories';
 import Login from "./routes/Login";
-import ProductsByCategory from "./routes/ProductsByCategory";
 import Checkout from "./routes/Checkout";
 import Profile from "./routes/Profile";
 import Home from "./routes/Home";
@@ -16,37 +15,36 @@ const App = () => {
       element: <Root />,
       children: [
         {
-          path: "/home",
-          element: <Home />
+          path: "home",
+          element: <Home />,
+          children: [
+            {
+              path: "products",
+              element: <Products />,
+
+            },
+            {
+              path: "products/:id",
+              element: <SingleProduct />
+            },
+            {
+              path: "categories",
+              element: <Categories />
+            }, 
+            {
+              path: "login",
+              element: <Login />
+            },
+            {
+              path: "checkout",
+              element: <Checkout />
+            },
+            {
+              path: "profile",
+              element: <Profile />
+            }
+          ]
         },
-        {
-          path: "/products",
-          element: <Products />
-        },
-        {
-          path: "/products/:id",
-          element: <SingleProduct />
-        },
-        {
-          path: "/categories",
-          element: <Categories />
-        }, 
-        {
-          path: "/login",
-          element: <Login />
-        },
-        {
-          path: "/products/category/:id",
-          element: <ProductsByCategory />
-        },
-        {
-          path: "/checkout",
-          element: <Checkout />
-        },
-        {
-          path: "/profile",
-          element: <Profile />
-        }
       ]
     },
   ])

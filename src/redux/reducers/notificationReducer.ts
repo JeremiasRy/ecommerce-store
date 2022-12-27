@@ -31,4 +31,8 @@ export const addNotification = (notification:INotification):ThunkAction<void, Ro
     dispatch(notify(notification))
 }
 
+export function createNotification(message:string, type: "notification" | "alert", timeoutInSec:number) {
+    return { message, type, timeoutInSec }
+}
+
 
