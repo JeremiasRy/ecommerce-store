@@ -58,7 +58,8 @@ export default function Products() {
             {categories.length > 1 && <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>}
         </div>
         <div className="main__products-wrapper">
-            {products.length === 0 ? <h4>Can't find anything with {find}</h4> : products.map(product => <ProductCard key={product.id} product={product}/>)}
+            {find !== "" && products.length === 0 && <h4>Can't find anything</h4>}
+            {products.length !== 0 && products.map(product => <ProductCard key={product.id} product={product}/>)}
         </div>
         </div>
     );

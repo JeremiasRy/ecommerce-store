@@ -263,6 +263,35 @@ main h1 {
   margin: 0 auto;
 }
 
+.checkout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.checkout__products {
+  width: 90vw;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.checkout__products tr {
+  border-bottom: 1px solid black;
+  height: 3em;
+}
+
+tr:nth-child(even) {
+  background-color: #1d1d27;
+}
+
+.checkout__products th, td {
+  text-align: left;
+}
+
+.checkout__products td {
+  padding-left: 10px;
+}
+
 .button {
   border-radius: 5px;
   height: 3em;

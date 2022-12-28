@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { isMetaProperty } from "typescript";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
 import { addToCart, removeFromCart } from "../redux/reducers/checkoutReducer";
+import productReducer from "../redux/reducers/productReducer";
 
 export default function Checkout() {
     const checkout = useAppSelector(state => state.checkout);
@@ -11,11 +10,24 @@ export default function Checkout() {
     return (
         <div className="checkout">
             <h1 className="checkout__header">Checkout</h1>
-            <ul className="checkout__products">
-                {checkout.map(item => <li key={item.product.id}>{item.product.title} {item.product.price}€ {item.amount}x <button className="button basic small" onClick={() => dispatch(addToCart(item.product))}>Add</button><button className="button remove small" onClick={() => dispatch(removeFromCart(item.product))}>Remove</button></li>)}
-            </ul>
-            <p>Total: {total}€</p>
-            <button className="checkout__button button basic">Place order</button>
+            <table className="checkout__products">
+                <tr>
+                    <th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th>Actions</th>
+                </tr>
+                {checkout.map(item => 
+                    <tr key={item.product.id}>
+                        <td>{item.product.title}</td>
+                        <td>{item.product.price}€</td>
+                        <td>{item.amount}x</td>
+                        <td>{item.product.price * item.amount}€</td>
+                        <td>
+                            <button className="button basic small" onClick={() => dispatch(addToCart(item.product))}>+</button>
+                            <button className="button basic small" onClick={() => dispatch(removeFromCart(item.product))}>-</button></td>
+                    </tr>)}
+                    <tr>
+                        <td></td><td></td><td></td><td><em>{total}€</em></td><td><button className="checkout__button button basic">Place order</button></td>
+                    </tr>
+            </table>
         </div>
     )
 }

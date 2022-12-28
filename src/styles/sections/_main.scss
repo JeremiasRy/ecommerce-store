@@ -102,7 +102,6 @@ main h1 {
     margin-top: 2vh;
 }
 //home page
-
 .home-page__content-wrapper {
     padding-top: 5vh;
     @include flex-row(space-evenly);
@@ -111,7 +110,6 @@ main h1 {
 .home-page p {
     text-align: center;
 }
-
 //login page
 .login-p {
     text-align: center;
@@ -134,4 +132,28 @@ main h1 {
 }
 .login-form button {
     margin: 0 auto;
+}
+//checkout page
+.checkout {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.checkout__products {
+    width: 90vw;
+    border-collapse: collapse;
+    margin: auto;
+}
+.checkout__products tr {
+    border-bottom: 1px solid black;
+    height: 3em;
+}
+tr:nth-child(even) {
+    background-color: $main_color_2;
+}
+.checkout__products th, td {
+    text-align: left;
+}
+.checkout__products td {
+    padding-left: 10px;
 }
