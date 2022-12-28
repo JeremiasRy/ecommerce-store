@@ -292,6 +292,75 @@ tr:nth-child(even) {
   padding-left: 10px;
 }
 
+.product-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.product-form label {
+  display: block;
+  margin: auto;
+}
+
+.product-form ul {
+  display: block;
+  margin: auto;
+}
+
+.product-form input {
+  background-color: #252530;
+  color: #ebebeb;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  width: 25vw;
+  height: 2em;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 1px #ebebeb solid;
+  transition: all 200ms ease-in-out 200ms;
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: normal;
+}
+
+.product-form textarea {
+  background-color: #252530;
+  color: #ebebeb;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  width: 25vw;
+  height: 15vh;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 1px #ebebeb solid;
+  transition: all 200ms ease-in-out 200ms;
+  text-align: left;
+  font-weight: normal;
+}
+
+.product-form select {
+  background-color: #252530;
+  color: #ebebeb;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  width: 25vw;
+  height: 2em;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 1px #ebebeb solid;
+  transition: all 200ms ease-in-out 200ms;
+}
+
 .button {
   border-radius: 5px;
   height: 3em;

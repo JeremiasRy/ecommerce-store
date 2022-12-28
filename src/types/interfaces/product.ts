@@ -1,10 +1,13 @@
 import ICategory from "./category"
 
-export default interface IProduct {
-    id:number
+export interface ISubmitProduct {
     title:string
     price:number
     description:string
-    category: ICategory
+    categoryId: number | ICategory
     images:string[]
+}
+export default interface IProduct extends Omit<ISubmitProduct, "categoryId"> {
+    id:number
+    category: ICategory
 }

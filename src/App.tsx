@@ -7,6 +7,7 @@ import Login from "./routes/Login";
 import Checkout from "./routes/Checkout";
 import Profile from "./routes/Profile";
 import Home from "./routes/Home";
+import CreateProduct from "./routes/CreateProduct";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const App = () => {
         {
           path: "profile",
           element: <Profile />
+        },
+        {
+          path: "create-product/:update/:id",
+          element: <CreateProduct />
         }
       ]
     },

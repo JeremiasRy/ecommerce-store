@@ -157,3 +157,31 @@ tr:nth-child(even) {
 .checkout__products td {
     padding-left: 10px;
 }
+//create/update product form
+.product-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.product-form label {
+    display: block;
+    margin: auto;
+}
+.product-form ul {
+    display: block;
+    margin: auto;
+}
+.product-form input {
+    @include input(25vw, 2em);
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: normal
+}
+.product-form textarea {
+    @include input(25vw, 15vh);
+    text-align: left;
+    font-weight: normal;
+}
+.product-form select {
+    @include input(25vw, 2em);
+}

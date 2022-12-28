@@ -48,7 +48,10 @@ export default function SingleProduct() {
                             productService.deleteProduct(product[0].id)
                             navigate("/")}}>
                             Delete
-                        </button><button className="button basic">Update</button>
+                        </button>
+                        <button 
+                        className="button basic" 
+                        onClick={() => navigate(`/create-product/true/${product[0].id}`)}>Update</button>
                     </div>}
                 </div>
             </div>
