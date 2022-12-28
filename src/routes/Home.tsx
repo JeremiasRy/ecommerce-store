@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
 import SlideShow from "../components/Slideshow";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
 import { getAllProducts } from "../redux/reducers/productReducer";
@@ -10,9 +9,8 @@ export default function Home() {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(getAllProducts())
-    },[dispatch])
-
+        dispatch(getAllProducts(0));
+    }, [dispatch])
 
     return (
         <div className="home-page">

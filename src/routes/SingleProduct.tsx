@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import SlideShow from "../components/Slideshow";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/checkoutReducer";
 import { addNotification } from "../redux/reducers/notificationReducer";
+import { getProduct } from "../redux/reducers/productReducer";
 import productService from "../services/product";
 import INotification from "../types/interfaces/notification";
 
@@ -12,6 +14,10 @@ export default function SingleProduct() {
     const user = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(getProduct(Number(id)))
+    }, [id])
 
 
     if (product.length === 0) {

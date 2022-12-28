@@ -67,9 +67,9 @@ export const updateProduct = (product:ISubmitProduct, id:number):ThunkAction<voi
 
 export const getAllProducts = createAsyncThunk(
     "getAllProducts",
-    async () => {
+    async (page:number) => {
         try {
-            let products = await productService.getProducts();
+            let products = await productService.getProducts(page - 1);
             return products
         } catch (e:any) {
             throw new Error(e.message);

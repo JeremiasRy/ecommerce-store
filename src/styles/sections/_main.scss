@@ -28,7 +28,9 @@ main h1 {
     flex-direction: column;
     justify-content: center;
 }
-
+.change-page-buttons {
+    margin: auto;
+}
 .product-card {
     width: 20vw;
     height: 20vh;
@@ -105,7 +107,6 @@ main h1 {
 .home-page__content-wrapper {
     padding-top: 5vh;
     @include flex-row(space-evenly);
-
 }
 .home-page p {
     text-align: center;

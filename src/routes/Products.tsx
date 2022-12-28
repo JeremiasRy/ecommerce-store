@@ -3,13 +3,12 @@ import { Outlet } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import RadioButton from "../components/RadioButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getAllCategories } from "../redux/reducers/categoryReducer";
-import { addNotification, createNotification } from "../redux/reducers/notificationReducer";
 import { filterByName, getAllProducts, getProductsByCategory, sortByPrice } from "../redux/reducers/productReducer";
 
 export default function Products() {
     const [direction, setDirection] = useState<"asc" | "desc">("asc");
     const [find, setFind] = useState("");
+    const [page, setPage] = useState(1);
     const products = useAppSelector(state => state.products);
     const categories = useAppSelector(state => state.categories);
     const dispatch = useAppDispatch();
@@ -19,17 +18,14 @@ export default function Products() {
             dispatch(filterByName(find));  
         }
     }, [find])
-    
+
     useEffect(() => {
-        if (categories.length === 1 && products.length === 0) {
-            dispatch(addNotification(createNotification("Category does not have any products", "notification", 3)))
-            dispatch(getAllProducts());
-            dispatch(getAllCategories());
-        } else if (products.length === 0 && find === "") {
-            dispatch(getAllProducts());
-            dispatch(getAllCategories());
+        if (categories.length !== 1) {
+            dispatch(getAllProducts(page))
+        } else if (categories.length === 1) {
+            dispatch(getProductsByCategory(categories[0].id));
         }
-    }, [dispatch, categories, products, find])
+    }, [page, categories])
 
     return (
         <div className="all-products">
@@ -56,6 +52,10 @@ export default function Products() {
                 </div>
             </div>
             {categories.length > 1 && <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>}
+            {categories.length > 1 && 
+        <div className="change-page-buttons">
+            <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> {page} <button className="button basic small" onClick={() => setPage(page + 1)}>Next</button>
+        </div>}
         </div>
         <div className="main__products-wrapper">
             {find !== "" && products.length === 0 && <h4>Can't find anything</h4>}

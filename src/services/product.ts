@@ -3,8 +3,8 @@ import { ISubmitProduct } from "../types/interfaces/product";
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
-const getProducts = async () => {
-    let result = await axios.get(`${baseUrl}/products/`);
+const getProducts = async (page:number) => {
+    let result = await axios.get(`${baseUrl}/products/`, {params: {offset: page * 20, limit: 20}});
     return result.data;
 };
 const createProduct = async (newProduct:ISubmitProduct) => {

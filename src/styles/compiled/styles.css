@@ -103,6 +103,10 @@ main h1 {
   justify-content: center;
 }
 
+.change-page-buttons {
+  margin: auto;
+}
+
 .product-card {
   width: 20vw;
   height: 20vh;
