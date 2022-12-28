@@ -66,6 +66,43 @@ main h1 {
   text-align: center;
 }
 
+.all-products__filter-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 10px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.all-products__filter-actions__text {
+  background-color: #252530;
+  color: #ebebeb;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 0 auto;
+  width: 20vw;
+  height: 1.5em;
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom: 1px #ebebeb solid;
+  transition: all 200ms ease-in-out 200ms;
+}
+
+.all-products__filter-actions__sort-direction {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sort-direction__radio-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .product-card {
   width: 20vw;
   height: 20vh;

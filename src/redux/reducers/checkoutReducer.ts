@@ -46,9 +46,9 @@ const checkoutReducer = createSlice({
         },
         emptyCart: () => {
             return initialState;
-        }
+        },
     }
 })
 
 export default checkoutReducer.reducer;
-export const { addToCart, removeFromCart, emptyCart } = checkoutReducer.actions;
+export const { addToCart, removeFromCart, emptyCart, } = checkoutReducer.actions;

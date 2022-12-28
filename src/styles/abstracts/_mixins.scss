@@ -26,3 +26,18 @@
     height: 3em;
     width: 7em;
 }
+@mixin input($width, $height) {
+    background-color: $main_color;
+    color: $font_color_1;
+    font-weight: 700;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 0 auto;
+    width: $width;
+    height: $height;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 1px $font_color_1 solid;
+    transition: all 200ms ease-in-out 200ms;
+}
