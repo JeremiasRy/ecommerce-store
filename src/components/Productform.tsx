@@ -64,6 +64,8 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
                 <p>Description</p>
                 <textarea value={description} onChange={(e) => setDescription(e.currentTarget.value)}/>
             </label>
+            {props.update === null && 
+            <>
             <label>
                 <p>Category</p>
                 <select onChange={(e) => setCategoryId(Number(e.currentTarget.value))}>
@@ -80,8 +82,9 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
             <ul>
                 <h4>Img URLs</h4>
                 {images.map(img => <li key={img}>{img} <button className="button small remove" onClick={() => setImages(images.filter(image => image !== img))}>Remove url</button></li>)}
-            </ul>
-            <button className="button basic" onClick={submitProduct}>Submit</button>
+            </ul></>
+            }
+            <button className="button basic" onClick={submitProduct}>{props.update === null ? "Submit" : "Update"}</button>
         </div>
     )
 }

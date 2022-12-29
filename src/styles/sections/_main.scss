@@ -29,7 +29,11 @@ main h1 {
     justify-content: center;
 }
 .change-page-buttons {
-    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 10px;
+    margin-top: 20px;
 }
 .product-card {
     width: 20vw;
@@ -162,7 +166,11 @@ tr:nth-child(even) {
 .product-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     row-gap: 10px;
+}
+.product-form button {
+    margin: auto;
 }
 .product-form label {
     display: block;

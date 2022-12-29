@@ -3,7 +3,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import Notification from "../components/NotificationBar";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getAllCategories } from "../redux/reducers/categoryReducer";
-import { getAllProducts } from "../redux/reducers/productReducer";
+import { getProductsPage } from "../redux/reducers/productReducer";
 
 export default function Root() {
     const user = useAppSelector(state => state.user);
@@ -22,7 +22,7 @@ export default function Root() {
                 <nav className="header-wrapper__nav">
                     <Link className="header-wrapper__nav__nav-element" to="products" 
                     onClick={() => {
-                        dispatch(getAllProducts(1));
+                        dispatch(getProductsPage(1));
                         dispatch(getAllCategories());
                         navigate('products')}}><p>Products</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="categories"><p>Categories</p></Link>

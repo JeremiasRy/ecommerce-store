@@ -24,10 +24,16 @@ const productReducer = createSlice({
         },
         addNewProduct: (state, action) => {
             return [...state, action.payload]
+        },
+        updateProducts: (state, action) => {
+            return state.map(product => product.id === action.payload.id ? action.payload : product);
+        },
+        deleteProductLocal: (state, action) => {
+            return state.filter(product => product.id !== action.payload);
         }
     },
     extraReducers: (build) => {
-        build.addCase(getAllProducts.fulfilled, (state, action) => {
+        build.addCase(getProductsPage.fulfilled, (state, action) => {
             return action.payload;
         })
         build.addCase(getProduct.fulfilled, (state, action) => {
@@ -40,9 +46,13 @@ const productReducer = createSlice({
 })
 
 export default productReducer.reducer;
-export const { sortByPrice, filterByName, addNewProduct } = productReducer.actions;
+export const { sortByPrice, filterByName, addNewProduct, updateProducts, deleteProductLocal } = productReducer.actions;
 
 export const addProduct = (product:ISubmitProduct):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    if (product.price < 0) {
+        dispatch(addNotification(createNotification("Proce must be positive", "alert", 3)));
+        return;
+    }
     try {
         let result = await productService.createProduct(product);
         dispatch(addNotification(createNotification(`Succesfully added ${result.title}`, "notification", 3)))
@@ -61,15 +71,38 @@ export const addProduct = (product:ISubmitProduct):ThunkAction<void, RootState, 
 }
 
 export const updateProduct = (product:ISubmitProduct, id:number):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
-    let result = await productService.updateProduct(product, id);
-    console.log(result);
-} 
+    try {
+        let result = await productService.updateProduct(product, id);
+        let uProduct:IProduct = {
+            id: result.id,
+            title: result.title,
+            description: result.description,
+            price: result.price,
+            category: result.category as ICategory,
+            images: result.images
+        }
+        dispatch(addNotification(createNotification(`Succesfully updated product ${uProduct.title}`, "notification", 3)))
+        dispatch(updateProducts(uProduct));
+    } catch (e:any) {
+        dispatch(addNotification(createNotification("Failed to update product", "alert", 3)));
+    }
+}
+export const deleteProduct = (id:number):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    let allProducts:IProduct[] = await productService.getAllProducts();
+    
+    if (!allProducts.some(product => product.id === id)) {
+        dispatch(addNotification(createNotification("Can't find product to delete", "alert", 3)))
+        return
+    }
+    await productService.deleteProduct(id);
+    dispatch(deleteProductLocal(id));
+}
 
-export const getAllProducts = createAsyncThunk(
+export const getProductsPage = createAsyncThunk(
     "getAllProducts",
     async (page:number) => {
         try {
-            let products = await productService.getProducts(page - 1);
+            let products = await productService.getProductsPage(page - 1);
             return products
         } catch (e:any) {
             throw new Error(e.message);

@@ -5,16 +5,21 @@ import notificationReducer from './reducers/notificationReducer';
 import productReducer from './reducers/productReducer';
 import userReducer from './reducers/userReducer';
 
-export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    products: productReducer,
-    categories: categoryReducer,
-    checkout: checkoutReducer,
-    notification: notificationReducer,
-  },
-  middleware: getDefaultMiddleware => getDefaultMiddleware(),
-},);
+
+export const createStore = () => {
+  return configureStore({
+    reducer: {
+      user: userReducer,
+      products: productReducer,
+      categories: categoryReducer,
+      checkout: checkoutReducer,
+      notification: notificationReducer,
+    },
+    middleware: getDefaultMiddleware => getDefaultMiddleware(),
+  });
+}
+
+const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

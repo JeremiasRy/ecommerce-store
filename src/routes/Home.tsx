@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SlideShow from "../components/Slideshow";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
-import { getAllProducts } from "../redux/reducers/productReducer";
+import { getProductsPage } from "../redux/reducers/productReducer";
 
 export default function Home() {
     const user = useAppSelector(state => state.user);
@@ -9,7 +9,7 @@ export default function Home() {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(getAllProducts(0));
+        dispatch(getProductsPage(0));
     }, [dispatch])
 
     return (

@@ -3,16 +3,19 @@ import { ISubmitProduct } from "../types/interfaces/product";
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
-const getProducts = async (page:number) => {
+const getProductsPage = async (page:number) => {
     let result = await axios.get(`${baseUrl}/products/`, {params: {offset: page * 20, limit: 20}});
     return result.data;
 };
+const getAllProducts = async () => {
+    let result = await axios.get(`${baseUrl}/products/`);
+    return result.data;
+}
 const createProduct = async (newProduct:ISubmitProduct) => {
     let result = await axios.post(`${baseUrl}/products/`, newProduct);
     return result.data;
 }
 const updateProduct = async (update:ISubmitProduct, id:number) => {
-    console.log(update);
     let result = await axios.put(`${baseUrl}/products/${id}`, update)
     return result.data;
 }
@@ -26,7 +29,8 @@ const deleteProduct = async (id:number) => {
 }
 const productService = {
     deleteProduct,
-    getProducts,
+    getProductsPage,
+    getAllProducts,
     getProduct,
     createProduct,
     updateProduct

@@ -29,6 +29,11 @@
     "eject": "react-scripts eject",
     "sass": "sass --watch ./src/styles/styles.scss:./src/styles/compiled/styles.css"
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios/.*)"
+    ]
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,5 +51,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "msw": "^0.49.2",
+    "ts-jest": "^29.0.3"
   }
 }
