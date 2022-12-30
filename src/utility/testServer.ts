@@ -35,6 +35,19 @@ const handler = [
     }),
     rest.delete("https://api.escuelajs.co/api/v1/products/0", async (req,res,ctx) => {
         return res(ctx.json(dummyData.allProducts.filter(product => product.id !== 0)))
+    }),
+    rest.delete("https://api.escuelajs.co/api/v1/products/4", async (req,res,ctx) => {
+        return res(ctx.json(dummyData.allProducts.filter(product => product.id !== 0)))
+    }),
+    rest.post("https://api.escuelajs.co/api/v1/auth/login", async (req,res,ctx) => {
+        let body = await req.json()
+        if (body.password !== dummyData.userAuth[0].password) {
+            return res(ctx.status(401, "invalid password"));
+        }
+        return res(ctx.json({access_token: dummyData.userAuth[0].authkey}))
+    }),
+    rest.get("https://api.escuelajs.co/api/v1/auth/profile", async (req,res,ctx) => {
+        return res(ctx.json(dummyData.user[0]));
     })
 ]
 

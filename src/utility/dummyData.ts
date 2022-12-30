@@ -1,4 +1,5 @@
 import IProduct, { ISubmitProduct } from "../types/interfaces/product";
+import IUser from "../types/interfaces/user";
 
 const validNewItem:ISubmitProduct = {
     title: "I added/updated this",
@@ -39,7 +40,19 @@ const allProducts = [
         category: 0,
         images: ["www.Hahaha.com", "www.Haha.com"]
     }]
+    const userAuth = [{
+        email: "jes@mail.com",
+        password: "qwerty",
+        authkey: "jwt"
+    }]
+    const user:IUser[] = [{
+        id: 1,
+        name: "dumdum",
+        password: "qwerty",
+        role: "customer",
+        email: "jes@mail.com"
+    }]
 
-const dummyData = { validNewItem, invalidNewItem, allProducts }
+const dummyData = { validNewItem, invalidNewItem, allProducts, userAuth, user }
 
 export default dummyData;

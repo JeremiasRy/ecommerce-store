@@ -1,9 +1,8 @@
-import IProduct, { ISubmitProduct } from "../../types/interfaces/product";
-import { createSlice, createAsyncThunk, ThunkAction, AnyAction, ThunkMiddleware, MiddlewareArray, getDefaultMiddleware, Middleware, AsyncThunkAction, Action, ThunkDispatch } from "@reduxjs/toolkit";
-import { AppDispatch, createStore, RootState } from "../store";
+import { ThunkMiddleware, MiddlewareArray, AnyAction } from "@reduxjs/toolkit";
+import { createStore, RootState } from "../store";
 import server from "../../utility/testServer";
-import { configureStore, ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
-import productReducer, { addProduct, deleteProduct, filterByName, getProductsPage, sortByPrice, updateProduct } from "./productReducer";
+import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
+import { addProduct, deleteProduct, filterByName, getProductsPage, sortByPrice, updateProduct } from "./productReducer";
 import IUser from "../../types/interfaces/user";
 import ICategory from "../../types/interfaces/category";
 import ICheckoutItem from "../../types/interfaces/checkoutItem";
@@ -76,5 +75,7 @@ describe("Create, delete and update", () => {
     test("Delete product", async () => {
         await store.dispatch(deleteProduct(0));
         expect(store.getState().products.length).toBe(2)
+        await store.dispatch(deleteProduct(4));
+        expect(store.getState().products.length).toBe(2);
     })
 })
