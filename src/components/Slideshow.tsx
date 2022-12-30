@@ -21,7 +21,7 @@ export default function SlideShow(props: {images:string[]}) {
             <div className="slideshow">
                 <div className="slideshow__slider" style={{transform: `translateX(${-index * 100}%)`}}>
                     {props.images.map((url, index) => 
-                        <div key={url + index} className="slideshow__slider__slide" style={{backgroundImage: `url(${url})`}}></div>
+                        <div key={url + index} className="slideshow__slider__slide div-bg-img" style={{backgroundImage: `url(${url})`}}></div>
                     )}
                 </div>
             </div>

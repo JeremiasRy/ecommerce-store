@@ -9,14 +9,14 @@ export default function CategoryCard(props: {category: ICategory}) {
     const dispatch = useAppDispatch();
     return (
         <div 
-        className="category-card" 
+        className="category-card div-bg-img" 
         onClick={() => {
             dispatch(getCategory(props.category.id));
             dispatch(getProductsByCategory(props.category.id));
             navigate(`/products`);
         }} 
         style={{backgroundImage: `url(${props.category.image})`}}>
-            <div className="category-card__overlay"></div>
+            <div className="category-card__overlay div-bg-img"></div>
             <h2>{props.category.name}</h2>
         </div>
     )

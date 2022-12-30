@@ -34,15 +34,15 @@ header {
   text-decoration: none;
   display: flex;
   color: inherit;
-  background-color: #252530;
-  box-shadow: 0 0 2px 2px #252530;
+  background-color: #1a1a22;
+  box-shadow: 0 0 2px 2px #1a1a22;
   transition: all 200ms;
 }
 
 .header-wrapper__nav__nav-element:hover {
   cursor: pointer;
   transition: all 200ms;
-  box-shadow: 0 0 2px 2px #eeff88;
+  box-shadow: 0 0 2px 2px #88ff8e;
 }
 
 .header-wrapper__header:hover {
@@ -52,7 +52,7 @@ header {
 }
 
 body {
-  background-color: #252530 !important;
+  background-color: #1a1a22 !important;
   font-family: "Helvetica-Neue", helvetica, arial, sans-serif;
   color: #ebebeb;
   margin: 0;
@@ -76,7 +76,7 @@ main h1 {
 }
 
 .all-products__filter-actions__text {
-  background-color: #252530;
+  background-color: #1a1a22;
   color: #ebebeb;
   font-weight: 700;
   text-align: center;
@@ -235,7 +235,7 @@ main h1 {
 }
 
 .login-sign-up {
-  color: #eeff88;
+  color: #88ff8e;
 }
 
 .login-sign-up:hover {
@@ -252,7 +252,7 @@ main h1 {
 }
 
 .login-form input {
-  background-color: #252530;
+  background-color: #1a1a22;
   color: #ebebeb;
   font-weight: 700;
   text-align: center;
@@ -322,7 +322,7 @@ tr:nth-child(even) {
 }
 
 .product-form input {
-  background-color: #252530;
+  background-color: #1a1a22;
   color: #ebebeb;
   font-weight: 700;
   text-align: center;
@@ -341,7 +341,7 @@ tr:nth-child(even) {
 }
 
 .product-form textarea {
-  background-color: #252530;
+  background-color: #1a1a22;
   color: #ebebeb;
   font-weight: 700;
   text-align: center;
@@ -359,7 +359,7 @@ tr:nth-child(even) {
 }
 
 .product-form select {
-  background-color: #252530;
+  background-color: #1a1a22;
   color: #ebebeb;
   font-weight: 700;
   text-align: center;
@@ -392,7 +392,7 @@ tr:nth-child(even) {
 }
 
 .basic {
-  background-color: #eeff88;
+  background-color: #88ff8e;
 }
 
 .remove {
@@ -431,9 +431,9 @@ tr:nth-child(even) {
   width: 15vw;
   height: 5vh;
   border-radius: 10px;
-  box-shadow: 0 0 2px 2px #252530;
+  box-shadow: 0 0 2px 2px #1a1a22;
   background-color: #a2a2ad;
-  color: #252530;
+  color: #1a1a22;
   z-index: 2;
 }
 
