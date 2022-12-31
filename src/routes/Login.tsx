@@ -17,7 +17,7 @@ export default function Login() {
     
     return (
         <>
-        <h1 className="login-h1">Login</h1>
+        <h1 className="login-h1">{register ? "Sign Up" : "Login"}</h1>
         {!register 
         ? <p className="login-p">Not a member? <span onClick={() => setRegister(!register)}className="login-sign-up">Sign up!</span></p> 
         : <p className="login-p">Already a member? <span className="login-sign-up" onClick={() => setRegister(!register)}>Login!</span></p>}

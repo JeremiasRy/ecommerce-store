@@ -1,6 +1,24 @@
 @import "../abstracts/mixins";
 @import "../abstracts/variables";
 
+//theme switch transition 
+.div-bg-img {
+    transition: 500ms all ease-in-out;
+}
+//breadcrumbs
+.breadcrumb-wrap {
+    display: inline-block;
+}
+.breadcrumbs {
+    padding-left: 10vw;
+}
+.breadcrumb {
+    text-decoration: none;
+    color: inherit;
+}
+.breadcrumb:hover {
+    color: $alt_color_1
+}
 //Button
 .button {
     @include button;

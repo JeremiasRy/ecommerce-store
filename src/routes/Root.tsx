@@ -5,7 +5,7 @@ import Notification from "../components/NotificationBar";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getAllCategories } from "../redux/reducers/categoryReducer";
 import { getProductsPage } from "../redux/reducers/productReducer";
-import darkCss from "../components/DarkCss";
+import lightCss from "../components/LightCss";
 
 
 export default function Root() {
@@ -14,11 +14,11 @@ export default function Root() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
     const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
-    const [dark, setDark] = useState(false);
+    const [light, setLight] = useState(false);
     return (
         <>
-        <style media={dark ? 'screen' : 'none'}>
-        {darkCss}
+        <style media={light ? 'screen' : 'none'}>
+        {lightCss}
         </style>
         <Notification />
         <header>
@@ -27,7 +27,7 @@ export default function Root() {
                     <h1 className="header-wrapper__header" onClick={() => navigate("/home")}>Web store</h1>
                 </div>
                 <nav className="header-wrapper__nav">
-                    <button className="button basic" onClick={() => setDark(!dark)}>{dark ? "Light" : "Dark"}</button>
+                    <button className="button basic" onClick={() => setLight(!light)}>{light ? "Dark" : "Light"}</button>
                     <Link className="header-wrapper__nav__nav-element" to="products" 
                     onClick={() => {
                         dispatch(getProductsPage(1));
@@ -40,8 +40,8 @@ export default function Root() {
                 </nav>
             </div>
         </header>
-        <Breadcrumbs />
         <main>
+            <Breadcrumbs />
             <Outlet />
         </main>
         <footer>

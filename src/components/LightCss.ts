@@ -1,4 +1,4 @@
-const darkCss = `:root { 
+const lightCss = `:root { 
     background-color: #fefefe;
     filter: invert(100%);
 }
@@ -7,9 +7,10 @@ const darkCss = `:root {
 }
 .div-bg-img {  
     filter: invert(100%);
+    transition: 500ms all ease-in-out;
 }
-h1, h2, h3, h4 {
+h1, h2, h3, h4, p {
     background-color: transparent;
 }`;
 
-export default darkCss;
+export default lightCss;

@@ -6,3 +6,12 @@ body {
     color: $font_color_1;
     margin: 0;
 }
+#root {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+:root {
+    transition: 500ms all ease-in-out;
+}

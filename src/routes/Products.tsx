@@ -16,6 +16,8 @@ export default function Products() {
     useEffect(() => {
         if (find !== "") {
             dispatch(filterByName(find));  
+        } else {
+            dispatch(getProductsPage(page));
         }
     }, [find])
 

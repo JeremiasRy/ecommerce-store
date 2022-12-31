@@ -58,6 +58,17 @@ body {
   margin: 0;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+:root {
+  transition: 500ms all ease-in-out;
+}
+
 main {
   margin-top: 20px;
 }
@@ -372,6 +383,31 @@ tr:nth-child(even) {
   border-right-style: none;
   border-bottom: 1px #ebebeb solid;
   transition: all 200ms ease-in-out 200ms;
+}
+
+footer {
+  margin-top: 5vh;
+}
+
+.div-bg-img {
+  transition: 500ms all ease-in-out;
+}
+
+.breadcrumb-wrap {
+  display: inline-block;
+}
+
+.breadcrumbs {
+  padding-left: 10vw;
+}
+
+.breadcrumb {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumb:hover {
+  color: #88ff8e;
 }
 
 .button {

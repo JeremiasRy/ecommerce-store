@@ -11,6 +11,7 @@ export default function Checkout() {
         <div className="checkout">
             <h1 className="checkout__header">Checkout</h1>
             <table className="checkout__products">
+                <tbody>
                 <tr>
                     <th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th>Actions</th>
                 </tr>
@@ -27,6 +28,7 @@ export default function Checkout() {
                     <tr>
                         <td></td><td></td><td></td><td><em>{total}€</em></td><td><button className="checkout__button button basic">Place order</button></td>
                     </tr>
+                    </tbody>
             </table>
         </div>
     )
