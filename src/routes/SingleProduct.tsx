@@ -17,7 +17,7 @@ export default function SingleProduct() {
 
     useEffect(() => {
         dispatch(getProduct(Number(id)))
-    }, [id])
+    }, [id, dispatch])
 
 
     if (product.length === 0) {

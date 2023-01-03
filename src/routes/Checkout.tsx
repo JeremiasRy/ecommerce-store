@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
 import { addToCart, removeFromCart } from "../redux/reducers/checkoutReducer";
-import productReducer from "../redux/reducers/productReducer";
 
 export default function Checkout() {
     const checkout = useAppSelector(state => state.checkout);

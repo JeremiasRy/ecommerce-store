@@ -9,7 +9,7 @@ export default function Categories() {
     
     useEffect(() => {
         dispatch(getAllCategories())
-    },[dispatch]);
+    }, [dispatch]);
 
     return (
         <>
