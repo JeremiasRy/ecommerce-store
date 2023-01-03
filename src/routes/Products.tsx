@@ -15,19 +15,16 @@ export default function Products() {
 
     useEffect(() => {
         if (find !== "") {
-            dispatch(filterByName(find));  
-        } else {
-            dispatch(getProductsPage(page));
-        }
-    }, [find])
+            dispatch(filterByName(find));
+            return;
+        } 
 
-    useEffect(() => {
         if (categories.length !== 1) {
             dispatch(getProductsPage(page))
         } else if (categories.length === 1) {
             dispatch(getProductsByCategory(categories[0].id));
         }
-    }, [page, categories])
+    }, [page, categories, dispatch, find])
 
     return (
         <div className="all-products">
@@ -54,15 +51,15 @@ export default function Products() {
                 </div>
             </div>
             {categories.length > 1 && <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>}
+            {categories.length > 1 && 
+            <div className="change-page-buttons">
+            <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> {page} <button className="button basic small" onClick={() => setPage(page + 1)}>Next</button>
+            </div>}
         </div>
         <div className="main__products-wrapper">
             {find !== "" && products.length === 0 && <h4>Can't find anything</h4>}
             {products.length !== 0 && products.map(product => <ProductCard key={product.id} product={product}/>)}
         </div>
-        {categories.length > 1 && 
-        <div className="change-page-buttons">
-            <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> {page} <button className="button basic small" onClick={() => setPage(page + 1)}>Next</button>
-        </div>}
         </div>
     );
 }

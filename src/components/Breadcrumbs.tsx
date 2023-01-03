@@ -11,7 +11,7 @@ export default function Breadcrumbs() {
         }
         return <Link to={`/${path}`} className="breadcrumb">{path}</Link>
     })
-    if (paths[1] === "home") {
+    if (paths[1] === "home" || paths[1] === "") {
         return <></>;
     }
     return (
