@@ -5,17 +5,109 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-v.4.9-green)
 ![SASS](https://img.shields.io/badge/SASS-v.4.9-hotpink)
 
-This project requires implementation of TypeScript and SASS.
+## Info 
 
-## Requirement
+Basic E-Commerce store setup using the above technologies. I used as an API end point the [platzi fake api](https://fakeapi.platzi.com/). <br/>
+Tests can be run with `npm run test` everything should pass because there is a mock server for testing purposes. <br/>
+I made all the styling myself from scratch thus it's pretty rough looking, but I wanted the practice. In the future I think I will just be using some ready made library for it.
 
-1. Use the API endpoint [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) to create an e-commerce website. Read the documentation and learn how to use the different endpoints.
-2. Create at lease 4 pages (can be more if you want): Home page, product page,
-profile page (only available if user logins), and cart page (cart could be a page or a modal)
-3. Create Redux store for following features:
-    - product reducer: get all products, find a single products, sort products by
-    categories, sort products by price. Create, update and delete a product (enable update & delete features only for admin of the webapp. For example, you can check if user is your admin account before let them delete product)
-    - user reducer: Register and Login
-    - cart reducer: add product to cart, remove products, update products's quantity in cart
-4. When adding routers to your application, programatically set certain routes to be private. For example, route to user profile page should not be accessible if user has not logged in.
-5. Deploy the application and rewrite README file.
+## Get it running
+
+`git clone` => `npm install` => `npm start` <br/>
+And then for SASS (if for some reason you want to create some more stying) `npm run sass` <br/>
+
+## Project structure
+
+```
+.
+├───public
+│       index.html
+│
+└───src
+    │   App.tsx
+    │   index.tsx
+    │   react-app-env.d.ts
+    │   reportWebVitals.ts
+    │   setupTests.ts
+    │
+    ├───components
+    │       Breadcrumbs.tsx
+    │       CategoryCard.tsx
+    │       LightCss.ts
+    │       NotificationBar.tsx
+    │       ProductCard.tsx
+    │       Productform.tsx
+    │       RadioButton.tsx
+    │       Slideshow.tsx
+    │       UserForm.tsx
+    │
+    ├───hooks
+    │       reduxHook.ts
+    │
+    ├───redux
+    │   │   store.ts
+    │   │
+    │   └───reducers
+    │           categoryReducer.ts
+    │           checkoutReducer.test.ts
+    │           checkoutReducer.ts
+    │           notificationReducer.test.ts
+    │           notificationReducer.ts
+    │           productReducer.test.ts
+    │           productReducer.ts
+    │           userReducer.test.ts
+    │           userReducer.ts
+    │
+    ├───routes
+    │       Categories.tsx
+    │       Checkout.tsx
+    │       CreateProduct.tsx
+    │       Home.tsx
+    │       Login.tsx
+    │       Products.tsx
+    │       Profile.tsx
+    │       Root.tsx
+    │       SingleProduct.tsx
+    │
+    ├───services
+    │       category.ts
+    │       product.ts
+    │       user.ts
+    │
+    ├───styles
+    │   │   styles.scss
+    │   │
+    │   ├───abstracts
+    │   │       _mixins.scss
+    │   │       _variables.scss
+    │   │
+    │   ├───compiled
+    │   │       styles.css
+    │   │       styles.css.map
+    │   │
+    │   ├───features
+    │   │       _basic-styles.scss
+    │   │
+    │   └───sections
+    │           _body.scss
+    │           _footer.scss
+    │           _header.scss
+    │           _main.scss
+    │
+    ├───types
+    │   └───interfaces
+    │           category.ts
+    │           checkoutItem.ts
+    │           credentials.ts
+    │           notification.ts
+    │           product.ts
+    │           user.ts
+    │
+    └───utility
+            dummyData.ts
+            testServer.ts
+```
+
+
+
+
