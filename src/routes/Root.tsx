@@ -15,6 +15,13 @@ export default function Root() {
     const navigate = useNavigate()
     const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
     const [light, setLight] = useState(false);
+
+    function handleProductsClick() {
+        dispatch(getProductsPage(1));
+        dispatch(getAllCategories());
+        navigate('products')
+    }
+    
     return (
         <>
         <style media={light ? 'screen' : 'none'}>
@@ -29,10 +36,7 @@ export default function Root() {
                 <nav className="header-wrapper__nav">
                     <button className="button basic" onClick={() => setLight(!light)}>{light ? "Dark" : "Light"}</button>
                     <Link className="header-wrapper__nav__nav-element" to="products" 
-                    onClick={() => {
-                        dispatch(getProductsPage(1));
-                        dispatch(getAllCategories());
-                        navigate('products')}}><p>Products</p></Link>
+                    onClick={handleProductsClick}><p>Products</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="categories"><p>Categories</p></Link>
                     <Link className="header-wrapper__nav__nav-element" to="checkout"><p>Checkout {itemsInCheckout}</p></Link>
                     {user.length === 0 ? <Link  className="header-wrapper__nav__nav-element" to="login"><p>Log in</p></Link> : <Link className="header-wrapper__nav__nav-element" to="profile"><p>{user[0].name}</p></Link>}

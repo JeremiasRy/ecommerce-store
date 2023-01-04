@@ -94,8 +94,14 @@ export const deleteProduct = (id:number):ThunkAction<void, RootState, unknown, A
         dispatch(addNotification(createNotification("Can't find product to delete", "alert", 3)))
         return
     }
-    await productService.deleteProduct(id);
-    dispatch(deleteProductLocal(id));
+    try {
+        await productService.deleteProduct(id);
+        dispatch(addNotification(createNotification("Product deleted", "notification", 3)))
+        dispatch(deleteProductLocal(id));
+    } catch (e:any) {
+        dispatch(addNotification(createNotification(`Something went wrong ${e.message}`, "alert", 3)))
+    }
+    
 }
 
 export const getProductsPage = createAsyncThunk(

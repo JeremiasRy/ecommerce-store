@@ -4,8 +4,7 @@ import SlideShow from "../components/Slideshow";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { addToCart } from "../redux/reducers/checkoutReducer";
 import { addNotification } from "../redux/reducers/notificationReducer";
-import { getProduct } from "../redux/reducers/productReducer";
-import productService from "../services/product";
+import { deleteProduct, getProduct } from "../redux/reducers/productReducer";
 import INotification from "../types/interfaces/notification";
 
 export default function SingleProduct() {
@@ -19,11 +18,22 @@ export default function SingleProduct() {
         dispatch(getProduct(Number(id)))
     }, [id, dispatch])
 
-
     if (product.length === 0) {
         return <></>;
     }
-
+    function handleAddToCart() {
+        dispatch(addToCart(product[0]));
+        let notification:INotification = {
+            message: `Added ${product[0].title} to cart!`,
+            type: "notification",
+            timeoutInSec: 3,
+        }
+        dispatch(addNotification(notification))
+    }
+    function handleDeleteClick() {
+        dispatch(deleteProduct(product[0].id))
+        navigate("/home")
+    }
     return (
         <div className="single-product">
             <h2>{product[0].title}</h2>    
@@ -37,22 +47,13 @@ export default function SingleProduct() {
                     <p>{product[0].price}€</p>
                     <button 
                     className="button basic" 
-                    onClick={() => {
-                        dispatch(addToCart(product[0]));
-                        let notification:INotification = {
-                            message: `Added ${product[0].title} to cart!`,
-                            type: "notification",
-                            timeoutInSec: 3,
-                        }
-                        dispatch(addNotification(notification))}}>Add to cart</button>
+                    onClick={handleAddToCart}>Add to cart</button>
                     {user.length !== 0 && user[0].role === "admin" && 
                     <div className="single-product-wrapper__right-column__admin-actions">
                         <h4>Edit product</h4>
                         <button 
                         className="button remove" 
-                        onClick={() => {
-                            productService.deleteProduct(product[0].id)
-                            navigate("/")}}>
+                        onClick={handleDeleteClick}>
                             Delete
                         </button>
                         <button 

@@ -1,4 +1,4 @@
-import IProduct, { ISubmitProduct } from "../types/interfaces/product";
+import { ISubmitProduct } from "../types/interfaces/product";
 import IUser from "../types/interfaces/user";
 
 const validNewItem:ISubmitProduct = {

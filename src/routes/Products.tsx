@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import RadioButton from "../components/RadioButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
+import { getAllCategories } from "../redux/reducers/categoryReducer";
 import { filterByName, getProductsPage, getProductsByCategory, sortByPrice } from "../redux/reducers/productReducer";
 
 export default function Products() {
@@ -20,7 +21,8 @@ export default function Products() {
         } 
 
         if (categories.length !== 1) {
-            dispatch(getProductsPage(page))
+            dispatch(getProductsPage(page));
+            dispatch(getAllCategories());
         } else if (categories.length === 1) {
             dispatch(getProductsByCategory(categories[0].id));
         }
@@ -55,7 +57,7 @@ export default function Products() {
                 <div className="change-page-buttons">
                     <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> 
                     {page} 
-                    <button className="button basic small" onClick={() => setPage(page + 1)}>Next</button>
+                    <button className="button basic small" onClick={() => !(products.length < 20) && setPage(page + 1)}>Next</button>
                 </div>}
             </div>
             <div className="main__products-wrapper">
