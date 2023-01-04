@@ -24,7 +24,7 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
             setImages(props.update.images);
             setId(props.update.id);
         }
-    }, [])
+    }, [dispatch, props.update])
 
     function addUrl() {
         setImages([...images, img])

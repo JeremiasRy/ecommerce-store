@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import SlideShow from "../components/Slideshow";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
 import { getProductsPage } from "../redux/reducers/productReducer";
