@@ -1,43 +1,27 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import RadioButton from "../components/RadioButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getAllCategories } from "../redux/reducers/categoryReducer";
-import { addNotification, createNotification } from "../redux/reducers/notificationReducer";
-import { filterByName, getProductsPage, getProductsByCategory, sortByPrice } from "../redux/reducers/productReducer";
+import { filterByName, getProductsPage, sortByPrice } from "../redux/reducers/productReducer";
 
 export default function Products() {
     const [direction, setDirection] = useState<"asc" | "desc">("asc");
     const [find, setFind] = useState("");
     const [page, setPage] = useState(1);
     const products = useAppSelector(state => state.products);
-    const categories = useAppSelector(state => state.categories);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (find !== "") {
             dispatch(filterByName(find))
-        } 
-    }, [find, dispatch]);
-
-    useEffect(() => {
-        if (categories.length !== 1) {
-            dispatch(getProductsPage(page));
-        } else if (categories.length === 1) {
-            dispatch(getProductsByCategory(categories[0].id));
+        } else {
+            dispatch(getProductsPage(page))
         }
-    }, [page, categories, dispatch])
-
-    if (products.length === 0 && categories.length === 1) {
-        dispatch(addNotification(createNotification(`${categories[0].name} is empty`, "notification", 3)));
-        dispatch(getAllCategories());
-    }
+    }, [find, dispatch, page]);
 
     return (
         <div className="all-products">
-            <Outlet />
-            <h1>{categories.length === 1 ? categories[0].name : "All products"}</h1>
+            <h1>All products</h1>
             <div className="all-products__filter-actions">
                 <div className="all-products__filter-actions__sort-direction">
                     <button 
@@ -58,14 +42,13 @@ export default function Products() {
                         setDirection={setDirection}/>
                     </div>
                 </div>
-                {categories.length > 1 && <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>}
+                <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>
                 {find !== "" && <button className="button basic small wide" onClick={() => setFind("")}>Remove filter</button>}
-                {categories.length > 1 && 
                 <div className="change-page-buttons">
                     <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> 
                     {page} 
                     <button className="button basic small" onClick={() => !(products.length < 20) && setPage(page + 1)}>Next</button>
-                </div>}
+                </div>
             </div>
             <div className="main__products-wrapper">
                 {find !== "" && products.length === 0 && 

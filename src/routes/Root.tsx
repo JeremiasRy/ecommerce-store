@@ -20,6 +20,7 @@ export default function Root() {
             dispatch(refreshLogin(refreshToken))
         }
     }, [user, dispatch])
+    
     useEffect(() => {
         if (window.localStorage.getItem("checkout")) {
             const checkout = JSON.parse(window.localStorage.getItem("checkout") as string);

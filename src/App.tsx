@@ -8,6 +8,7 @@ import Checkout from "./routes/Checkout";
 import Profile from "./routes/Profile";
 import Home from "./routes/Home";
 import CreateProduct from "./routes/CreateProduct";
+import ProductsByCategory from "./routes/ProductsByCategory";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const App = () => {
         {
           path: "categories",
           element: <Categories />
+        },
+        {
+          path: "categories/:categoryId",
+          element: <ProductsByCategory />
         }, 
         {
           path: "login",
