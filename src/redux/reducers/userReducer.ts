@@ -1,4 +1,5 @@
 import { AnyAction, createSlice, ThunkAction } from "@reduxjs/toolkit";
+import { AxiosError, AxiosResponse } from "axios";
 import userService from "../../services/user";
 import ICredentials, { IRegister } from "../../types/interfaces/credentials";
 import INotification from "../../types/interfaces/notification";
@@ -44,7 +45,11 @@ export const login = (credentials:ICredentials):ThunkAction<void, RootState, unk
         dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
         window.localStorage.setItem("refreshToken", result.refresh_token);
     } catch (e:any) {
-        dispatch(addNotification(createNotification("Log in failed", "alert", 3)));
+        const error = e as AxiosError
+        const response = error.response as AxiosResponse;
+        console.log(response);
+        const messageArr = response.data.message as [];
+        dispatch(addNotification(createNotification(messageArr, "alert", 3)));
     }
 }
 export const logout = ():ThunkAction<void, RootState, unknown, AnyAction> => dispatch => {
@@ -68,7 +73,10 @@ export const registerUser = (register:IRegister):ThunkAction<void, RootState, un
         dispatch(addNotification(notification));
         dispatch(login({email: register.email, password: register.password}));
     } catch (e:any) {
-        dispatch(addNotification(createNotification("Register failed", "alert", 3)));
+        const error = e as AxiosError
+        const response = error.response as AxiosResponse;
+        const messageArr = response.data.message as [];
+        dispatch(addNotification(createNotification(messageArr, "alert", 3)));
     }
 
 }
