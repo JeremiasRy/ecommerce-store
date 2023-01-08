@@ -47,7 +47,6 @@ export const login = (credentials:ICredentials):ThunkAction<void, RootState, unk
     } catch (e:any) {
         const error = e as AxiosError
         const response = error.response as AxiosResponse;
-        console.log(response);
         const messageArr = response.data.message as [];
         dispatch(addNotification(createNotification(messageArr, "alert", 3)));
     }
