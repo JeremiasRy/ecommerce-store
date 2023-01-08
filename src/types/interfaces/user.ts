@@ -4,4 +4,5 @@ export default interface IUser {
     role: "admin" | "customer"
     email:string
     password:string
+    avatar:string
 }

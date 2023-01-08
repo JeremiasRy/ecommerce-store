@@ -10,7 +10,10 @@
     display: inline-block;
 }
 .breadcrumbs {
+    height: 1em;
     padding-left: 10vw;
+    top: 15vh;
+    position: absolute;
 }
 .breadcrumb {
     text-decoration: none;
@@ -30,6 +33,9 @@
 .small {
     height: 1.5em;
     font-size: small;
+}
+.wide {
+    width: fit-content; 
 }
 .basic {
     background-color: $alt_color_1;

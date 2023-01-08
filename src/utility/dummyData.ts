@@ -50,7 +50,8 @@ const allProducts = [
         name: "dumdum",
         password: "qwerty",
         role: "customer",
-        email: "jes@mail.com"
+        email: "jes@mail.com",
+        avatar: "www.thisisnotreallink.com"
     }]
 
 const dummyData = { validNewItem, invalidNewItem, allProducts, userAuth, user }

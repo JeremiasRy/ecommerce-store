@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard";
 import RadioButton from "../components/RadioButton";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getAllCategories } from "../redux/reducers/categoryReducer";
+import { addNotification, createNotification } from "../redux/reducers/notificationReducer";
 import { filterByName, getProductsPage, getProductsByCategory, sortByPrice } from "../redux/reducers/productReducer";
 
 export default function Products() {
@@ -16,17 +17,22 @@ export default function Products() {
 
     useEffect(() => {
         if (find !== "") {
-            dispatch(filterByName(find));
-            return;
+            dispatch(filterByName(find))
         } 
+    }, [find, dispatch]);
 
+    useEffect(() => {
         if (categories.length !== 1) {
             dispatch(getProductsPage(page));
-            dispatch(getAllCategories());
         } else if (categories.length === 1) {
             dispatch(getProductsByCategory(categories[0].id));
         }
-    }, [page, categories, dispatch, find])
+    }, [page, categories, dispatch])
+
+    if (products.length === 0 && categories.length === 1) {
+        dispatch(addNotification(createNotification(`${categories[0].name} is empty`, "notification", 3)));
+        dispatch(getAllCategories());
+    }
 
     return (
         <div className="all-products">
@@ -53,6 +59,7 @@ export default function Products() {
                     </div>
                 </div>
                 {categories.length > 1 && <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>}
+                {find !== "" && <button className="button basic small wide" onClick={() => setFind("")}>Remove filter</button>}
                 {categories.length > 1 && 
                 <div className="change-page-buttons">
                     <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> 

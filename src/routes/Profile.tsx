@@ -19,14 +19,15 @@ export default function Profile() {
             <></>
         );
     };
+    console.log(user);
 
     return (
         <div className="profile-page">
-            <h1>Your profile</h1>
-            <p>username: {user[0].name}</p>
+            <h1>Your profile {user[0].name}!</h1>
+            <div className="profile-page__avatar div-bg-img" style={{backgroundImage: `url(${user[0].avatar})`}}></div>
             <p>Role: {user[0].role}</p>
             <button 
-            className="button remove" 
+            className="button remove btn-profile-page" 
             onClick={() => {
                 dispatch(logout());
                 navigate("/home")}}>Log out</button>
