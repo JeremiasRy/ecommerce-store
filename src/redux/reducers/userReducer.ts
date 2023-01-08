@@ -50,7 +50,7 @@ export const login = (credentials:ICredentials):ThunkAction<void, RootState, unk
 export const logout = ():ThunkAction<void, RootState, unknown, AnyAction> => dispatch => {
     dispatch(addNotification(createNotification("Logged out!", "notification", 3)));
     dispatch(logoutUser());
-    window.localStorage.clear();
+    window.localStorage.removeItem("refreshToken");
 }
 export const registerUser = (register:IRegister):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     try {

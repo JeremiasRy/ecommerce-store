@@ -80,7 +80,6 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
                 <button className="button basic" onClick={addUrl}>Add url</button>
             </label>
             <ul>
-                <h4>Img URLs</h4>
                 {images.map(img => <li key={img}>{img} <button className="button small remove" onClick={() => setImages(images.filter(image => image !== img))}>Remove url</button></li>)}
             </ul></>
             }

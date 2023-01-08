@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
-import { addToCart, removeFromCart } from "../redux/reducers/checkoutReducer";
+import { addToCart, emptyCart, removeFromCart } from "../redux/reducers/checkoutReducer";
 
 export default function Checkout() {
     const checkout = useAppSelector(state => state.checkout);
@@ -25,7 +25,7 @@ export default function Checkout() {
                             <button className="button basic small" onClick={() => dispatch(removeFromCart(item.product))}>-</button></td>
                     </tr>)}
                     <tr>
-                        <td></td><td></td><td></td><td><em>{total}€</em></td><td><button className="checkout__button button basic">Place order</button></td>
+                        <td></td><td></td><td></td><td><em>{total}€</em></td><td><button className="checkout__button button basic">Place order</button><button onClick={() => dispatch(emptyCart())}className="checkout__button button basic remove">Empty cart</button></td>
                     </tr>
                     </tbody>
             </table>

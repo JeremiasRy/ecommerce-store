@@ -25,7 +25,6 @@ const getUser = async (accessToken:string) => {
     return result.data
 }
 const refresh = async (token:string) => {
-    console.log(token);
     let result = await axios.post(`${baseUrl}/auth/refresh-token`, {refreshToken: token});
     return result.data;
 }

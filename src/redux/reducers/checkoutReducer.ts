@@ -21,9 +21,13 @@ const checkoutReducer = createSlice({
                 amount: amountInCart + 1,
             }
             if (foundInCart) {
-                return state.map(item => item.product.id === action.payload.id ? newItem : item);
+                let newState = state.map(item => item.product.id === action.payload.id ? newItem : item);
+                window.localStorage.setItem("checkout", JSON.stringify(newState));
+                return newState;
             } else {
-                return [...state, newItem];
+                let newState = [...state, newItem];
+                window.localStorage.setItem("checkout", JSON.stringify(newState));
+                return newState;
             }
             
         },
@@ -35,20 +39,28 @@ const checkoutReducer = createSlice({
                 }
             })
             if (amountInCart === 1) {
-                return state.filter(item => item.product.id !== action.payload.id);
+                let newState = state.filter(item => item.product.id !== action.payload.id);
+                window.localStorage.setItem("checkout", JSON.stringify(newState));
+                return newState
             } else {
                 let newItem:ICheckoutItem = {
                     product: action.payload,
                     amount: amountInCart - 1
                 }
-                return state.map(item => item.product.id === action.payload.id ? newItem : item);
+                let newState = state.map(item => item.product.id === action.payload.id ? newItem : item);
+                window.localStorage.setItem("checkout", JSON.stringify(newState))
+                return newState;
             }
         },
         emptyCart: () => {
+            window.localStorage.removeItem("checkout");
             return initialState;
         },
+        fillCartFromStorage: (state, action) => {
+            return action.payload;
+        }
     }
 })
 
 export default checkoutReducer.reducer;
-export const { addToCart, removeFromCart, emptyCart, } = checkoutReducer.actions;
+export const { addToCart, removeFromCart, emptyCart, fillCartFromStorage } = checkoutReducer.actions;

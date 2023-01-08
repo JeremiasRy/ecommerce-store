@@ -525,9 +525,12 @@ footer {
 
 .notification-bar {
   position: absolute;
-  width: 15vw;
-  height: 5vh;
+  min-width: 15vw;
+  min-height: 5vh;
+  height: fit-content;
+  width: fit-content;
   border-radius: 10px;
+  padding: 5px;
   box-shadow: 0 0 2px 2px #1a1a22;
   background-color: #a2a2ad;
   color: #1a1a22;

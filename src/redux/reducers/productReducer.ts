@@ -5,6 +5,7 @@ import categoryService from "../../services/category";
 import { RootState } from "../store";
 import { addNotification, createNotification } from "./notificationReducer";
 import ICategory from "../../types/interfaces/category";
+import { AxiosError, AxiosResponse } from "axios";
 
 const initialState:IProduct[] = [];
 
@@ -50,12 +51,12 @@ export const { sortByPrice, filterByName, addNewProduct, updateProducts, deleteP
 
 export const addProduct = (product:ISubmitProduct):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     if (product.price < 0) {
-        dispatch(addNotification(createNotification("Proce must be positive", "alert", 3)));
+        dispatch(addNotification(createNotification(["Price must be positive"], "alert", 3)));
         return;
     }
     try {
         let result = await productService.createProduct(product);
-        dispatch(addNotification(createNotification(`Succesfully added ${result.title}`, "notification", 3)))
+        dispatch(addNotification(createNotification([`Succesfully added ${result.title}`], "notification", 3)))
         let newProduct:IProduct = {
             id: result.id,
             title: result.title,
@@ -66,7 +67,11 @@ export const addProduct = (product:ISubmitProduct):ThunkAction<void, RootState, 
         }
         dispatch(addNewProduct(newProduct));
     } catch (e:any) {
-        dispatch(addNotification(createNotification(`Error while creating product ${e.message}`, "notification", 3)))
+        const error = e as AxiosError
+        const response = error.response as AxiosResponse;
+        const messageArr = response.data.message as [];
+
+        dispatch(addNotification(createNotification(messageArr, "notification", 5)))
     }
 }
 
