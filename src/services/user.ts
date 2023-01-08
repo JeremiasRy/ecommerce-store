@@ -24,12 +24,18 @@ const getUser = async (accessToken:string) => {
     let result = await axios.get(`${baseUrl}/auth/profile`, config)
     return result.data
 }
+const refresh = async (token:string) => {
+    console.log(token);
+    let result = await axios.post(`${baseUrl}/auth/refresh-token`, {refreshToken: token});
+    return result.data;
+}
 
 const userService = {
     login,
     checkEmailAvailability,
     getUser,
     createNewUser,
+    refresh
 }
 
 export default userService;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Notification from "../components/NotificationBar";
@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getAllCategories } from "../redux/reducers/categoryReducer";
 import { getProductsPage } from "../redux/reducers/productReducer";
 import lightCss from "../components/LightCss";
+import { refreshLogin } from "../redux/reducers/userReducer";
 
 
 export default function Root() {
@@ -15,6 +16,13 @@ export default function Root() {
     const navigate = useNavigate()
     const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
     const [light, setLight] = useState(false);
+
+    useEffect(() => {
+        if (user.length === 0 && window.localStorage.getItem("refreshToken")) {
+            const refreshToken = window.localStorage.getItem("refreshToken") as string;
+            dispatch(refreshLogin(refreshToken))
+        }
+    }, [])
 
     function handleProductsClick() {
         dispatch(getProductsPage(1));

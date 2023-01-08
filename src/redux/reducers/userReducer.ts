@@ -24,12 +24,25 @@ const userReducer = createSlice({
 export default userReducer.reducer
 export const { logoutUser, loginUser } = userReducer.actions;
 
+export const refreshLogin = (refreshToken:string):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
+    try {
+        let result = await userService.refresh(refreshToken);
+        let user:IUser = await userService.getUser(result.access_token);
+        dispatch(loginUser(user));
+        dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
+        window.localStorage.setItem("refreshToken", result.refresh_token);
+    } catch (e:any) {
+        dispatch(addNotification(createNotification("Session expired", "notification", 3)));
+    }
+}
+
 export const login = (credentials:ICredentials):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     try {
         let result = await userService.login(credentials);
         let user:IUser = await userService.getUser(result.access_token);
         dispatch(loginUser(user));
         dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
+        window.localStorage.setItem("refreshToken", result.refresh_token);
     } catch (e:any) {
         dispatch(addNotification(createNotification("Log in failed", "alert", 3)));
     }
@@ -37,6 +50,7 @@ export const login = (credentials:ICredentials):ThunkAction<void, RootState, unk
 export const logout = ():ThunkAction<void, RootState, unknown, AnyAction> => dispatch => {
     dispatch(addNotification(createNotification("Logged out!", "notification", 3)));
     dispatch(logoutUser());
+    window.localStorage.clear();
 }
 export const registerUser = (register:IRegister):ThunkAction<void, RootState, unknown, AnyAction> => async dispatch => {
     try {
