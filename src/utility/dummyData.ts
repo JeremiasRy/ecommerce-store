@@ -3,6 +3,7 @@ import { ISubmitProduct } from "../types/interfaces/product";
 import { User } from "../types/user";
 
 const validNewItem:ISubmitProduct = {
+    id: null,
     title: "I added/updated this",
     price: 22,
     description: "It's a dummy product",
@@ -10,6 +11,7 @@ const validNewItem:ISubmitProduct = {
     images: ["www.fakeurl.com", "www.morefakeurls.com"]
 };
 const invalidNewItem:ISubmitProduct = {
+    id: null,
     title: "I added this",
     price: -1000000,
     description: "It's an invalid product",

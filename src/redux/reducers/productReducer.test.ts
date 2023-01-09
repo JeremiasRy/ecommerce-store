@@ -59,7 +59,8 @@ describe("Create, delete and update", () => {
         expect(store.getState().products.length).toBe(3);
     })
     test("Update product", async () => {
-        await store.dispatch(updateProduct(dummyData.validNewItem, 0));
+        dummyData.validNewItem.id = 0;
+        await store.dispatch(updateProduct(dummyData.validNewItem));
         expect(store.getState().products[0].title).toBe(dummyData.validNewItem.title);
     })
     test("Delete product", async () => {

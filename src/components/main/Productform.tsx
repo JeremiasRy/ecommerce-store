@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { getAllCategories } from "../../redux/reducers/categoryReducer";
-import IProduct, { ISubmitProduct } from "../../types/interfaces/product";
+import IProduct from "../../types/interfaces/product";
 
 export default function ProductForm(props: {submitAction:any, update:null|IProduct}) {
     const categories = useAppSelector(state => state.categories);
@@ -31,23 +31,17 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
         setImg("")
     }
     function submitProduct() {
-        let newProduct:ISubmitProduct = {
-            title: title,
-            price: price,
-            description: description,
-            categoryId: categoryId,
-            images: images 
-        }
         if (props.update !== null) {
             let upProduct = {
+                id: id,
                 title: title,
                 price: price,
                 description: description,
             }
-            dispatch(props.submitAction(upProduct, id))
+            dispatch(props.submitAction(upProduct))
             return;
         }
-        dispatch(props.submitAction(newProduct))
+        dispatch(props.submitAction({title, description, price, categoryId, images}))
     }
 
     return (

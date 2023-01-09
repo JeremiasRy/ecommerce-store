@@ -1,6 +1,7 @@
 import ICategory from "./category"
 
 export interface ISubmitProduct {
+    id: number | null,
     title:string
     price:number
     description:string
