@@ -9,7 +9,7 @@ export default function NavBar(props: {setLight:React.Dispatch<React.SetStateAct
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const itemsInCheckout = `(${checkout.reduce((a,b) => a + b.amount, 0)})`;
+    const itemsInCheckout = ` (${checkout.length})`;
 
     function handleProductsClick() {
         dispatch(getProductsPage(1));
