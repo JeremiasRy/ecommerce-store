@@ -15,6 +15,9 @@ export default function Breadcrumbs() {
         return <></>;
     }
     return (
-        <div className="breadcrumbs">{Links.map((link, idx) => <div className="breadcrumb-wrap" key={link.toString() + idx}>&nbsp;/ {link}</div>)}</div>
+        <div className="breadcrumbs">{Links.map(
+            (link, idx) => <div className="breadcrumb-wrap" key={link.toString() + idx}>&nbsp;/ {link}</div>
+            )}
+        </div>
     );
 }

@@ -21,7 +21,7 @@ beforeEach(() => {
 
 describe("Notification", () => {
     test("Create notification", () => {
-        store.dispatch(addNotification(createNotification("Hello", "notification", 3)));
+        store.dispatch(addNotification(createNotification(["Hello"], "notification", 3)));
         expect(store.getState().notification.message).toBe("Hello");
     })
 })

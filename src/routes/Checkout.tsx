@@ -25,9 +25,13 @@ export default function Checkout() {
                             <button className="button basic small" onClick={() => dispatch(removeFromCart(item.product))}>-</button></td>
                     </tr>)}
                     <tr>
-                        <td></td><td></td><td></td><td><em>{total}€</em></td><td><button className="checkout__button button basic">Place order</button><button onClick={() => dispatch(emptyCart())}className="checkout__button button basic remove">Empty cart</button></td>
+                        <td></td><td></td><td></td><td><em>{total}€</em></td>
+                        <td>
+                            <button className="checkout__button button basic">Place order</button>
+                            <button onClick={() => dispatch(emptyCart())}className="checkout__button button basic remove">Empty cart</button>
+                        </td>
                     </tr>
-                    </tbody>
+                </tbody>
             </table>
         </div>
     )

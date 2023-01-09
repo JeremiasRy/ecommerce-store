@@ -11,6 +11,7 @@ import CreateProduct from "./routes/CreateProduct";
 import ProductsByCategory from "./routes/ProductsByCategory";
 
 const App = () => {
+  
   const router = createBrowserRouter([
     {
       path: "/",
@@ -55,6 +56,7 @@ const App = () => {
       ]
     },
   ])
+  
   return (
     <RouterProvider router={router} />
   )

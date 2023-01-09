@@ -19,7 +19,6 @@ export default function Profile() {
             <></>
         );
     };
-    console.log(user);
 
     return (
         <div className="profile-page">

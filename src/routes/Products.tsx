@@ -34,8 +34,9 @@ export default function Products() {
             <div className="main__products-wrapper">
                 {find !== "" && products.length === 0 && 
                 <h4>Can't find anything</h4>}
-                {products.length !== 0 && products.map(product => 
-                    <ProductCard key={product.id} product={product}/>)}
+                {products.length !== 0 && products.map(
+                    product => <ProductCard key={product.id} product={product}/>
+                    )}
             </div>
         </div>
     );
