@@ -1,6 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node"
 import IProduct, { ISubmitProduct } from "../types/interfaces/product";
+import IUser from "../types/interfaces/user";
 import dummyData from "./dummyData";
 
 const handler = [
@@ -10,26 +11,26 @@ const handler = [
         )
     }),
     rest.post("https://api.escuelajs.co/api/v1/products", async (req,res,ctx) => {
-        let itemSubmitted:ISubmitProduct = await req.json();
+        let { title, description, price, images, categoryId } = await req.json();
         let newItem:IProduct = {
             id: 4,
-            category: {id: Number(itemSubmitted.categoryId), name: "jes", image: "www.fakeimg.com"},
-            title: itemSubmitted.title,
-            description: itemSubmitted.description,
-            price: itemSubmitted.price,
-            images: itemSubmitted.images
+            category: {id: Number(categoryId), name: "jes", image: "www.fakeimg.com"},
+            title,
+            description,
+            price,
+            images
         };
         return res(ctx.json(newItem));
     }),
     rest.put("https://api.escuelajs.co/api/v1/products/0", async (req,res,ctx) => {
-        let upProduct:ISubmitProduct = await req.json();
+        let { title, description, price, categoryId, images } = await req.json();
         let newProduct:IProduct = {
             id: 0, 
-            title: upProduct.title, 
-            description: upProduct.description, 
-            price: upProduct.price,
-            category: {id: Number(upProduct.categoryId), name: "jes", image: "www.fakeimg.com"},
-            images: upProduct.images
+            title,
+            description,
+            price,
+            category: {id: Number(categoryId), name: "jes", image: "www.fakeimg.com"},
+            images
         }
         return res(ctx.json(newProduct))
     }),
@@ -40,14 +41,40 @@ const handler = [
         return res(ctx.json(dummyData.allProducts.filter(product => product.id !== 0)))
     }),
     rest.post("https://api.escuelajs.co/api/v1/auth/login", async (req,res,ctx) => {
-        let body = await req.json()
-        if (body.password !== dummyData.userAuth[0].password) {
-            return res(ctx.status(401, "invalid password"));
+        let { email, password } = await req.json()
+        let auth = dummyData.userAuth.find(user => user.email === email && user.password === password);
+        if (!auth) {
+            return res(ctx.status(401, "Invalid password or user"));
         }
-        return res(ctx.json({access_token: dummyData.userAuth[0].authkey}))
+        return res(ctx.json({access_token: auth.authkey}))
     }),
     rest.get("https://api.escuelajs.co/api/v1/auth/profile", async (req,res,ctx) => {
-        return res(ctx.json(dummyData.user[0]));
+        let auth = req.headers.get("authorization");
+        let userAuth = dummyData.userAuth.find(user => `Bearer ${user.authkey}` === auth)
+        if (!userAuth) {
+            return res(ctx.status(401));
+        }
+        let user = dummyData.user.find(user => user.email === userAuth?.email);
+        return res(ctx.json(user));
+    }),
+    rest.post("https://api.escuelajs.co/api/v1/users/is-available", async (req,res,ctx) => {
+        let body = await req.json();
+        let isAvailable = !dummyData.user.some(user => user.email === body.email);
+        return res(ctx.json({isAvailable}));
+    }),
+    rest.post("https://api.escuelajs.co/api/v1/users", async (req,res,ctx) => {
+        let { name, email, password, avatar } = await req.json();
+        let newUser:IUser = {
+            id: dummyData.user.length,
+            name,
+            role: "customer",
+            email,
+            password,
+            avatar
+        }
+        dummyData.user.push(newUser);
+        dummyData.userAuth.push({email, password, authkey: "jwt2"});
+        return res(ctx.status(200));
     })
 ]
 

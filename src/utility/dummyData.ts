@@ -1,3 +1,4 @@
+import { IRegister } from "../types/interfaces/credentials";
 import { ISubmitProduct } from "../types/interfaces/product";
 import IUser from "../types/interfaces/user";
 
@@ -15,6 +16,18 @@ const invalidNewItem:ISubmitProduct = {
     categoryId: 0,
     images: ["www.fakeurl.com", "www.morefakeurls.com"]
 };
+const invalidNewGuy:IRegister = {
+    name: "newguy",
+    avatar: "www.totallynotanavatarlink.com",
+    email: "jes@mail.com",
+    password: "qwertyasddd"
+}
+const validNewGuy:IRegister =  {
+    name: "Nonni",
+    avatar: "www.stillNotAValidLink",
+    email: "jesjes@mail.com",
+    password: "qwerty"
+}
 const allProducts = [
     {
         id: 0,
@@ -46,7 +59,7 @@ const allProducts = [
         authkey: "jwt"
     }]
     const user:IUser[] = [{
-        id: 1,
+        id: 0,
         name: "dumdum",
         password: "qwerty",
         role: "customer",
@@ -54,6 +67,6 @@ const allProducts = [
         avatar: "www.thisisnotreallink.com"
     }]
 
-const dummyData = { validNewItem, invalidNewItem, allProducts, userAuth, user }
+const dummyData = { validNewItem, invalidNewItem, allProducts, userAuth, user, validNewGuy, invalidNewGuy }
 
 export default dummyData;

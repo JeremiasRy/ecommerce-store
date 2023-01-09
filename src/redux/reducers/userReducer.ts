@@ -64,12 +64,8 @@ export const registerUser = (register:IRegister):ThunkAction<void, RootState, un
             return;
         }
         await userService.createNewUser(register);
-        let notification:INotification = {
-            message: "Register success! " + register.name,
-            type: "notification",
-            timeoutInSec: 3,
-        }
-        dispatch(addNotification(notification));
+
+        dispatch(addNotification(createNotification("Register success! " + register.name, "notification", 3)));
         dispatch(login({email: register.email, password: register.password}));
     } catch (e:any) {
         const error = e as AxiosError
