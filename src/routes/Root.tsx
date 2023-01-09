@@ -15,7 +15,7 @@ export default function Root() {
     const [light, setLight] = useState(false);
 
     useEffect(() => {
-        if (user.length === 0 && window.localStorage.getItem("refreshToken")) {
+        if (user === null && window.localStorage.getItem("refreshToken")) {
             const refreshToken = window.localStorage.getItem("refreshToken") as string;
             dispatch(refreshLogin(refreshToken))
         }

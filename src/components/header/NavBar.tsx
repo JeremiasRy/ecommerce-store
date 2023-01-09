@@ -33,14 +33,14 @@ export default function NavBar(props: {setLight:React.Dispatch<React.SetStateAct
                 <Link className="header-wrapper__nav__nav-element" to="checkout">
                     <p>Checkout {itemsInCheckout}</p>
                 </Link>
-                {user.length === 0 
+                {user === null 
                 ? <Link  className="header-wrapper__nav__nav-element" to="login">
                     <p>Log in</p>
                   </Link> 
                 : <Link className="header-wrapper__nav__nav-element" to="profile">
-                    <p>{user[0].name}</p>
+                    <p>{user.name}</p>
                   </Link>}
-                {user.length === 1 && user[0].role === "admin" && 
+                {user !== null && user.role === "admin" && 
                 <Link className="header-wrapper__nav__nav-element" to="create-product/false/0">
                     <p>Create product</p>
                 </Link>}

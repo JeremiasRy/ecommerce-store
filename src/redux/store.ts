@@ -15,7 +15,6 @@ export const createStore = () => {
       checkout: checkoutReducer,
       notification: notificationReducer,
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware(),
   });
 }
 

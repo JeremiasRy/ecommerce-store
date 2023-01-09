@@ -48,7 +48,7 @@ export default function SingleProduct() {
                     <button 
                     className="button basic" 
                     onClick={handleAddToCart}>Add to cart</button>
-                    {user.length !== 0 && user[0].role === "admin" && 
+                    {user !== null && user.role === "admin" && 
                     <div className="single-product-wrapper__right-column__admin-actions">
                         <h4>Edit product</h4>
                         <button 

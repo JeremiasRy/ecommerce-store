@@ -10,7 +10,7 @@ export default function Login() {
     const [register, setRegister] = useState(false);
 
     useEffect(() => {
-        if (user.length !== 0) {
+        if (user !== null) {
             navigate("/profile");
         } 
     }, [user, navigate]);

@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node"
 import IProduct, { ISubmitProduct } from "../types/interfaces/product";
-import IUser from "../types/interfaces/user";
+import {User} from "../types/user";
 import dummyData from "./dummyData";
 
 const handler = [
@@ -54,17 +54,17 @@ const handler = [
         if (!userAuth) {
             return res(ctx.status(401));
         }
-        let user = dummyData.user.find(user => user.email === userAuth?.email);
+        let user = dummyData.user.find(user => user?.email === userAuth?.email);
         return res(ctx.json(user));
     }),
     rest.post("https://api.escuelajs.co/api/v1/users/is-available", async (req,res,ctx) => {
         let body = await req.json();
-        let isAvailable = !dummyData.user.some(user => user.email === body.email);
+        let isAvailable = !dummyData.user.some(user => user?.email === body.email);
         return res(ctx.json({isAvailable}));
     }),
     rest.post("https://api.escuelajs.co/api/v1/users", async (req,res,ctx) => {
         let { name, email, password, avatar } = await req.json();
-        let newUser:IUser = {
+        let newUser:User = {
             id: dummyData.user.length,
             name,
             role: "customer",

@@ -1,6 +1,6 @@
 import { IRegister } from "../types/interfaces/credentials";
 import { ISubmitProduct } from "../types/interfaces/product";
-import IUser from "../types/interfaces/user";
+import { User } from "../types/user";
 
 const validNewItem:ISubmitProduct = {
     title: "I added/updated this",
@@ -58,7 +58,7 @@ const allProducts = [
         password: "qwerty",
         authkey: "jwt"
     }]
-    const user:IUser[] = [{
+    const user:User[] = [{
         id: 0,
         name: "dumdum",
         password: "qwerty",

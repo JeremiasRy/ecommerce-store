@@ -3,19 +3,9 @@ import { createStore, RootState } from "../store";
 import server from "../../utility/testServer";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { addProduct, deleteProduct, filterByName, getProductsPage, sortByPrice, updateProduct } from "./productReducer";
-import IUser from "../../types/interfaces/user";
-import ICategory from "../../types/interfaces/category";
-import ICheckoutItem from "../../types/interfaces/checkoutItem";
-import INotification from "../../types/interfaces/notification";
 import dummyData from "../../utility/dummyData";
 
-let store: ToolkitStore<RootState, AnyAction, MiddlewareArray<[ThunkMiddleware<{
-    user: IUser[];
-    products: any[];
-    categories: ICategory[];
-    checkout: ICheckoutItem[];
-    notification: INotification;
-}, AnyAction, undefined>]>>;
+let store: ToolkitStore<RootState, AnyAction, [ThunkMiddleware<RootState, AnyAction, undefined>]>;
 
 beforeAll(() => {
     server.listen();

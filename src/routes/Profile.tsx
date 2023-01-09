@@ -9,22 +9,16 @@ export default function Profile() {
     const navigate = useNavigate();
     
     useEffect(() => {
-        if (user.length === 0) {
+        if (user === null) {
             navigate("/");
         }
     }, [navigate, user]);
 
-    if (user.length === 0) {
-        return (
-            <></>
-        );
-    };
-
     return (
         <div className="profile-page">
-            <h1>Your profile {user[0].name}!</h1>
-            <div className="profile-page__avatar div-bg-img" style={{backgroundImage: `url(${user[0].avatar})`}}></div>
-            <p>Role: {user[0].role}</p>
+            <h1>Your profile {user?.name}!</h1>
+            <div className="profile-page__avatar div-bg-img" style={{backgroundImage: `url(${user?.avatar})`}}></div>
+            <p>Role: {user?.role}</p>
             <button 
             className="button remove btn-profile-page" 
             onClick={() => {

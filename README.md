@@ -31,15 +31,23 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │   setupTests.ts
     │
     ├───components
-    │       Breadcrumbs.tsx
-    │       CategoryCard.tsx
-    │       LightCss.ts
-    │       NotificationBar.tsx
-    │       ProductCard.tsx
-    │       Productform.tsx
-    │       RadioButton.tsx
-    │       Slideshow.tsx
-    │       UserForm.tsx
+    │   │   LightCss.ts
+    │   │   NotificationBar.tsx
+    │   │   Slideshow.tsx
+    │   │
+    │   ├───filter
+    │   │       FilterActions.tsx
+    │   │       RadioButton.tsx
+    │   │
+    │   ├───header
+    │   │       Breadcrumbs.tsx
+    │   │       NavBar.tsx
+    │   │
+    │   └───main
+    │           CategoryCard.tsx
+    │           ProductCard.tsx
+    │           Productform.tsx
+    │           UserForm.tsx
     │
     ├───hooks
     │       reduxHook.ts
@@ -65,6 +73,7 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │       Home.tsx
     │       Login.tsx
     │       Products.tsx
+    │       ProductsByCategory.tsx
     │       Profile.tsx
     │       Root.tsx
     │       SingleProduct.tsx
@@ -95,6 +104,8 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │           _main.scss
     │
     ├───types
+    │   │   filter.ts
+    │   │
     │   └───interfaces
     │           category.ts
     │           checkoutItem.ts

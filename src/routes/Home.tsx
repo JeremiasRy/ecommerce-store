@@ -15,7 +15,7 @@ export default function Home() {
     return (
         <div className="home-page">
             <h1>Web store</h1>
-            {user.length !== 0 && <p>Welcome back {user[0].name}</p>}
+            {user !== null && <p>Welcome back {user.name}</p>}
             <div className="home-page__content-wrapper">
                 <div className="home-page_content-wrapper__left">
                     <h4>Our mission</h4>

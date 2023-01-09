@@ -111,7 +111,7 @@ export const deleteProduct = (id:number):ThunkAction<void, RootState, unknown, A
 
 export const getProductsPage = createAsyncThunk(
     "getAllProducts",
-    async (page:number) => {
+    async (page:number, thunkAPI) => {
         try {
             let products = await productService.getProductsPage(page - 1);
             return products
@@ -136,9 +136,6 @@ export const getProductsByCategory = createAsyncThunk(
     async (categoryId:number) => {
         try {
             let products = await categoryService.getProductsByCategory(categoryId);
-            if (products.length === 0) {
-                return [];
-            }
             return products;
         } catch (e:any) {
             throw new Error(e.message)
