@@ -49,6 +49,7 @@ describe("Create, delete and update", () => {
     })
     test("Create valid item", async () => {
         await store.dispatch(addProduct(dummyData.validNewItem));
+        await store.dispatch(getProductsPage(1));
         expect(store.getState().products.length).toBe(4);
         expect(store.getState().products[3].title).toBe(dummyData.validNewItem.title);
         expect(store.getState().products[3].price).toBe(dummyData.validNewItem.price);
@@ -56,17 +57,20 @@ describe("Create, delete and update", () => {
     })
     test("Create invalid item", async () => {
         await store.dispatch(addProduct(dummyData.invalidNewItem));
-        expect(store.getState().products.length).toBe(3);
+        expect(store.getState().products.length).toBe(4);
     })
     test("Update product", async () => {
         dummyData.validNewItem.id = 0;
         await store.dispatch(updateProduct(dummyData.validNewItem));
+        await store.dispatch(getProductsPage(1))
         expect(store.getState().products[0].title).toBe(dummyData.validNewItem.title);
     })
     test("Delete product", async () => {
         await store.dispatch(deleteProduct(0));
-        expect(store.getState().products.length).toBe(2)
+        await store.dispatch(getProductsPage(1));
+        expect(store.getState().products.length).toBe(3)
         await store.dispatch(deleteProduct(4));
-        expect(store.getState().products.length).toBe(2);
+        await store.dispatch(getProductsPage(1));
+        expect(store.getState().products.length).toBe(3);
     })
 })

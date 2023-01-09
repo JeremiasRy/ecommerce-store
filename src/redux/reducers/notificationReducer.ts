@@ -24,7 +24,7 @@ export const { removeNotification } = notificationReducer.actions;
 
 export const addNotification = createAsyncThunk(
     'addNotification',
-    (notification:INotification, thunkAPI) => {
+    async (notification:INotification, thunkAPI) => {
         if (timer) {
             clearTimeout(timer);
         }

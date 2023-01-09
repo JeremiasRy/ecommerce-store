@@ -12,30 +12,33 @@ const handler = [
     }),
     rest.post("https://api.escuelajs.co/api/v1/products", async (req,res,ctx) => {
         let { title, description, price, images, categoryId } = await req.json();
-        let newItem:IProduct = {
+        let newItem = {
             id: 4,
-            category: {id: Number(categoryId), name: "jes", image: "www.fakeimg.com"},
+            category: Number(categoryId),
             title,
             description,
             price,
             images
         };
+        dummyData.allProducts.push(newItem);
         return res(ctx.json(newItem));
     }),
     rest.put("https://api.escuelajs.co/api/v1/products/0", async (req,res,ctx) => {
         let { title, description, price, categoryId, images } = await req.json();
-        let newProduct:IProduct = {
+        let newProduct = {
             id: 0, 
             title,
             description,
             price,
-            category: {id: Number(categoryId), name: "jes", image: "www.fakeimg.com"},
+            category: Number(categoryId),
             images
         }
+        dummyData.allProducts = dummyData.allProducts.map(product => product.id === newProduct.id ? newProduct : product);
         return res(ctx.json(newProduct))
     }),
     rest.delete("https://api.escuelajs.co/api/v1/products/0", async (req,res,ctx) => {
-        return res(ctx.json(dummyData.allProducts.filter(product => product.id !== 0)))
+        dummyData.allProducts = dummyData.allProducts.filter(product => product.id !== 0);
+        return res(ctx.json(dummyData.allProducts))
     }),
     rest.delete("https://api.escuelajs.co/api/v1/products/4", async (req,res,ctx) => {
         return res(ctx.json(dummyData.allProducts.filter(product => product.id !== 0)))

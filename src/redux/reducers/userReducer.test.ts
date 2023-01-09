@@ -27,18 +27,18 @@ describe("Initial state", () => {
         await store.dispatch(login({email: "jes@mail.com", password: "qwe"} ))
         expect(store.getState().user).toBe(null);
         await store.dispatch(login({email: "jes@mail.com", password: "qwerty"} ))
-        expect(store.getState().user).toBe(1);
+        expect(store.getState().user?.email).toBe("jes@mail.com");
         await store.dispatch(logout());
-        expect(store.getState().user).toBe(0);
+        expect(store.getState().user).toBe(null);
     })
     test("resgister doen't happen if email exists", async () => {
         await store.dispatch(registerUser(dummyData.invalidNewGuy))
-        expect(store.getState().user).toBe(0);
+        expect(store.getState().user).toBe(null);
     })
     test("register happens and logins", async () => {
         await store.dispatch(registerUser(dummyData.validNewGuy))
         await store.dispatch(login({email: dummyData.validNewGuy.email, password: dummyData.validNewGuy.password}))
-        expect(store.getState().user).toBe(1)
+        expect(store.getState().user?.email).toBe(dummyData.validNewGuy.email);
     })
 
 })
