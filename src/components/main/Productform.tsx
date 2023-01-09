@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getAllCategories } from "../redux/reducers/categoryReducer";
-import IProduct, { ISubmitProduct } from "../types/interfaces/product";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { getAllCategories } from "../../redux/reducers/categoryReducer";
+import IProduct, { ISubmitProduct } from "../../types/interfaces/product";
 
 export default function ProductForm(props: {submitAction:any, update:null|IProduct}) {
     const categories = useAppSelector(state => state.categories);

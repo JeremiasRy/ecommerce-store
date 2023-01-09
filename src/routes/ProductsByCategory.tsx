@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/main/ProductCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { getCategory } from "../redux/reducers/categoryReducer";
 import { getProductsByCategory } from "../redux/reducers/productReducer";

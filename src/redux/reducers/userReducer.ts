@@ -2,7 +2,6 @@ import { AnyAction, createSlice, ThunkAction } from "@reduxjs/toolkit";
 import { AxiosError, AxiosResponse } from "axios";
 import userService from "../../services/user";
 import ICredentials, { IRegister } from "../../types/interfaces/credentials";
-import INotification from "../../types/interfaces/notification";
 import IUser from "../../types/interfaces/user";
 import { RootState } from "../store";
 import { addNotification, createNotification } from "./notificationReducer";

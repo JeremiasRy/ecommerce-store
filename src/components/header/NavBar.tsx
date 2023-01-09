@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { getAllCategories } from "../redux/reducers/categoryReducer";
-import { getProductsPage } from "../redux/reducers/productReducer";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import { getAllCategories } from "../../redux/reducers/categoryReducer";
+import { getProductsPage } from "../../redux/reducers/productReducer";
 
 export default function NavBar(props: {setLight:React.Dispatch<React.SetStateAction<boolean>>, light:boolean}) {
     const user = useAppSelector(state => state.user);

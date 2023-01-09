@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import CategoryCard from "../components/CategoryCard";
+import CategoryCard from "../components/main/CategoryCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
 import { getAllCategories } from "../redux/reducers/categoryReducer";
 

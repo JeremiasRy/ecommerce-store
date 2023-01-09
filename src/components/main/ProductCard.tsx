@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import IProduct from "../types/interfaces/product";
+import IProduct from "../../types/interfaces/product";
 
 export default function ProductCard(props: {product:IProduct}) {
     const navigate = useNavigate();

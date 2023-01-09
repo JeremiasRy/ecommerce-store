@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Breadcrumbs from "../components/Breadcrumbs";
+import Breadcrumbs from "../components/header/Breadcrumbs";
 import Notification from "../components/NotificationBar";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import lightCss from "../components/LightCss";
 import { refreshLogin } from "../redux/reducers/userReducer";
 import { fillCartFromStorage } from "../redux/reducers/checkoutReducer";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/header/NavBar";
 
 
 export default function Root() {

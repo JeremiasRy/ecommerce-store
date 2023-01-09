@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import ProductCard from "../components/ProductCard";
-import RadioButton from "../components/RadioButton";
+import ProductCard from "../components/main/ProductCard";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
-import { filterByName, getProductsPage, sortByPrice } from "../redux/reducers/productReducer";
+import { filterByName, getProductsPage, } from "../redux/reducers/productReducer";
+import FilterActions from "../components/filter/FilterActions";
 
 export default function Products() {
     const [direction, setDirection] = useState<"asc" | "desc">("asc");
@@ -22,34 +22,15 @@ export default function Products() {
     return (
         <div className="all-products">
             <h1>All products</h1>
-            <div className="all-products__filter-actions">
-                <div className="all-products__filter-actions__sort-direction">
-                    <button 
-                    className="button basic" 
-                    onClick={() => dispatch(sortByPrice(direction))}>
-                        Sort
-                    </button>
-                    <div className="sort-direction__radio-buttons">
-                        <RadioButton 
-                        label="ascending" 
-                        value="asc" 
-                        checked={direction === "asc"} 
-                        setDirection={setDirection}/> 
-                        <RadioButton 
-                        label="Descending" 
-                        value="desc" 
-                        checked={direction === "desc"} 
-                        setDirection={setDirection}/>
-                    </div>
-                </div>
-                <input className="all-products__filter-actions__text" type="text" placeholder="Filter by name" value={find} onChange={(e) => setFind(e.currentTarget.value)}/>
-                {find !== "" && <button className="button basic small wide" onClick={() => setFind("")}>Remove filter</button>}
-                <div className="change-page-buttons">
-                    <button className="button basic small" onClick={() => page - 1 >= 1 && setPage(page - 1)}>Prev</button> 
-                    {page} 
-                    <button className="button basic small" onClick={() => !(products.length < 20) && setPage(page + 1)}>Next</button>
-                </div>
-            </div>
+            <FilterActions 
+            direction={direction}
+            setDirection={setDirection}
+            find={find}
+            setFind={setFind}
+            page={page}
+            setPage={setPage}
+            productsOnCurrentPage={products.length}/>
+
             <div className="main__products-wrapper">
                 {find !== "" && products.length === 0 && 
                 <h4>Can't find anything</h4>}

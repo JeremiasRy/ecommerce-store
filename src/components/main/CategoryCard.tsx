@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ICategory from "../types/interfaces/category";
+import ICategory from "../../types/interfaces/category";
 
 export default function CategoryCard(props: {category: ICategory}) {
     const navigate = useNavigate();

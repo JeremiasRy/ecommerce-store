@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, } from "../hooks/reduxHook";
-import ICredentials, { IRegister } from "../types/interfaces/credentials";
+import { useAppDispatch, } from "../../hooks/reduxHook";
+import ICredentials, { IRegister } from "../../types/interfaces/credentials";
 
 export default function UserForm(props: {submitAction: any, register: boolean}) {
     const [email, setEmail] = useState("");

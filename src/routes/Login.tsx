@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserForm from "../components/UserForm"
+import UserForm from "../components/main/UserForm"
 import { useAppSelector } from "../hooks/reduxHook"
 import { login, registerUser } from "../redux/reducers/userReducer"
 

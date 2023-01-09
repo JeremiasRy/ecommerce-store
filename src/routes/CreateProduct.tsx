@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import ProductForm from "../components/Productform";
+import ProductForm from "../components/main/Productform";
 import { useAppSelector } from "../hooks/reduxHook";
 import { addProduct, updateProduct } from "../redux/reducers/productReducer";
 
