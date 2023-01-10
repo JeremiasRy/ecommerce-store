@@ -14,7 +14,7 @@ const handler = [
         let { title, description, price, images, categoryId } = await req.json();
         let newItem = {
             id: 4,
-            category: Number(categoryId),
+            categoryId: Number(categoryId),
             title,
             description,
             price,
@@ -30,7 +30,7 @@ const handler = [
             title,
             description,
             price,
-            category: Number(categoryId),
+            categoryId: Number(categoryId),
             images
         }
         dummyData.allProducts = dummyData.allProducts.map(product => product.id === newProduct.id ? newProduct : product);
@@ -73,7 +73,8 @@ const handler = [
             role: "customer",
             email,
             password,
-            avatar
+            avatar,
+            refreshtoken: "ww"
         }
         dummyData.user.push(newUser);
         dummyData.userAuth.push({email, password, authkey: "jwt2"});

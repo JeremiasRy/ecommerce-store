@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Store } from "@reduxjs/toolkit";
 import ICheckoutItem from "../../types/interfaces/checkoutItem";
 
 const initialState:ICheckoutItem[] = []
@@ -22,14 +23,11 @@ const checkoutReducer = createSlice({
             }
             if (foundInCart) {
                 let newState = state.map(item => item.product.id === action.payload.id ? newItem : item);
-                window.localStorage.setItem("checkout", JSON.stringify(newState));
                 return newState;
             } else {
                 let newState = [...state, newItem];
-                window.localStorage.setItem("checkout", JSON.stringify(newState));
                 return newState;
             }
-            
         },
         removeFromCart: (state, action) => {
             let amountInCart = 0;
@@ -40,7 +38,6 @@ const checkoutReducer = createSlice({
             })
             if (amountInCart === 1) {
                 let newState = state.filter(item => item.product.id !== action.payload.id);
-                window.localStorage.setItem("checkout", JSON.stringify(newState));
                 return newState
             } else {
                 let newItem:ICheckoutItem = {
@@ -48,15 +45,13 @@ const checkoutReducer = createSlice({
                     amount: amountInCart - 1
                 }
                 let newState = state.map(item => item.product.id === action.payload.id ? newItem : item);
-                window.localStorage.setItem("checkout", JSON.stringify(newState))
                 return newState;
             }
         },
         emptyCart: () => {
-            window.localStorage.removeItem("checkout");
             return initialState;
         },
-        fillCartFromStorage: (state, action) => {
+        fillCartFromStorage: (_, action) => {
             return action.payload;
         }
     }

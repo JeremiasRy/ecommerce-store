@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, } from "@reduxjs/toolkit";
 import { AxiosError, AxiosResponse } from "axios";
 import userService from "../../services/user";
 import ICredentials, { IRegister } from "../../types/interfaces/credentials";
-import {User} from '../../types/user'
+import { User } from '../../types/user'
 import { addNotification, createNotification } from "./notificationReducer";
 
 const initialState:User = null as User;
@@ -34,7 +34,6 @@ export const refreshLogin = createAsyncThunk(
             let result = await userService.refresh(refreshToken);
             let user = await userService.getUser(result.access_token);
             thunkAPI.dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
-            window.localStorage.setItem("refreshToken", result.refresh_token);
             return user;
         } catch (e:any) {
             thunkAPI.dispatch(addNotification(createNotification("Session expired", "notification", 3)));
@@ -48,10 +47,12 @@ export const login = createAsyncThunk(
         try {
             thunkAPI.dispatch(addNotification(createNotification("Logging in...", "notification", 5)));
             let result = await userService.login(credentials);
-            let user = await userService.getUser(result.access_token);
-            thunkAPI.dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
-            window.localStorage.setItem("refreshToken", result.refresh_token);
-            return user;
+            let user:User = await userService.getUser(result.access_token);
+            if (user !== null) {
+                user.refreshtoken = result.refresh_token;
+                thunkAPI.dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
+                return user;
+            }
         } catch (e:any) {
             const error = e as AxiosError
             const response = error.response as AxiosResponse;

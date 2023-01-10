@@ -36,7 +36,7 @@ const allProducts = [
         title: "Fake product 1",
         description: "This product does not exist",
         price: 100,
-        category: 2,
+        categoryId: 2,
         images: ["www.notAUrl.com", "www.It'sNotReal.com"]
     },
     {
@@ -44,7 +44,7 @@ const allProducts = [
         title: "Search me",
         description: "JEe jeejee",
         price: 122,
-        category: 1,
+        categoryId: 1,
         images: ["www.Allright.com", "www.Hehe.com"]
     },
     {
@@ -52,7 +52,7 @@ const allProducts = [
         title: "Fake product 3",
         description: "This product might exist...",
         price: 166,
-        category: 0,
+        categoryId: 0,
         images: ["www.Hahaha.com", "www.Haha.com"]
     }]
     const userAuth = [{
@@ -66,7 +66,8 @@ const allProducts = [
         password: "qwerty",
         role: "customer",
         email: "jes@mail.com",
-        avatar: "www.thisisnotreallink.com"
+        avatar: "www.thisisnotreallink.com",
+        refreshtoken: "nothingtoseehere"
     }]
 
 const dummyData = { validNewItem, invalidNewItem, allProducts, userAuth, user, validNewGuy, invalidNewGuy }
