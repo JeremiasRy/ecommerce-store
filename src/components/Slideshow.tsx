@@ -16,6 +16,7 @@ export default function SlideShow(props: {images:string[]}) {
             setIndex(prevIndex => prevIndex === props.images.length - 1 ? 0 : prevIndex + 1)
         }, 2000)
     },[index, props])
+    
     return (
         <div className="slideshow-wrapper">
             <div className="slideshow">
