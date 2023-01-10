@@ -9,6 +9,7 @@ import Profile from "./routes/Profile";
 import Home from "./routes/Home";
 import CreateProduct from "./routes/CreateProduct";
 import ProductsByCategory from "./routes/ProductsByCategory";
+import ErrorElement from "./routes/ErrorElement";
 
 const App = () => {
   
@@ -16,6 +17,7 @@ const App = () => {
     {
       path: "/",
       element: <Root />,
+      errorElement: <ErrorElement />,
       children: [
         {
           path: "home",

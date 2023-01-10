@@ -23,7 +23,16 @@ main h1 {
 .root-overlay {
     @include basic-overlay;
 }
+//Error element
 
+.error-element {
+    text-align: center;
+}
+.error-element h4:hover {
+    @include basic-hover;
+    color: $alt_color2;
+    transition: 500ms all ease-in-out;
+}
 //Products page
 .all-products__filter-actions {
     display: flex;

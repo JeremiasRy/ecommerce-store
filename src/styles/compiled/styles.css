@@ -102,6 +102,17 @@ main h1 {
   transition: all 200ms;
 }
 
+.error-element {
+  text-align: center;
+}
+
+.error-element h4:hover {
+  cursor: pointer;
+  transition: all 200ms;
+  color: #f32f15;
+  transition: 500ms all ease-in-out;
+}
+
 .all-products__filter-actions {
   display: flex;
   flex-direction: column;
