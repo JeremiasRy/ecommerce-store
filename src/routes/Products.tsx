@@ -14,7 +14,10 @@ export default function Products() {
 
     useEffect(() => {
         if (find !== "") {
-            dispatch(filterByName(find))
+            const debounce = setTimeout(() => {
+                dispatch(filterByName(find))
+            }, 500)
+            return () => clearTimeout(debounce)
         } else {
             dispatch(getProductsPage(page))
         }
