@@ -11,6 +11,19 @@ Basic E-Commerce store setup using the above technologies. I used as an API end 
 Tests can be run with `npm run test` everything should pass because there is a mock server for testing purposes. <br/>
 I made all the styling myself from scratch thus it's pretty rough looking, but I wanted the practice. In the future I think I will just be using some ready made library for it.
 
+## Live site
+
+Deployed to [netlify](strong-daffodil-738c21.netlify.app) 
+
+## Features
+
+Browse all products, pagination is implemented by default but when using sorting or filtering functions it fetches all the products. <br/>
+Login and Register functions (Register works if the email is available code block is commented out, the API has some problems with the email verification) <br/>
+Notifications for everything you do and error handling <br/>
+Checkout and user is stored in localstorage and the user is refreshed from the api everytime site is refreshed. <br/>
+Admin priviledges include editing, updating and deleting products. <br/>
+Private routes that are only accessible by logging in (Profile and create/update for admin)
+
 ## Get it running
 
 `git clone` => `npm install` => `npm start` <br/>
@@ -45,8 +58,10 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │   │
     │   └───main
     │           CategoryCard.tsx
+    │           CheckoutTable.tsx
     │           ProductCard.tsx
     │           Productform.tsx
+    │           SingleProductInfo.tsx
     │           UserForm.tsx
     │
     ├───hooks
@@ -59,6 +74,8 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │           categoryReducer.ts
     │           checkoutReducer.test.ts
     │           checkoutReducer.ts
+    │           loadingReducer.test.ts
+    │           loadingReducer.ts
     │           notificationReducer.test.ts
     │           notificationReducer.ts
     │           productReducer.test.ts
@@ -70,6 +87,7 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │       Categories.tsx
     │       Checkout.tsx
     │       CreateProduct.tsx
+    │       ErrorElement.tsx
     │       Home.tsx
     │       Login.tsx
     │       Products.tsx
@@ -105,6 +123,7 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │
     ├───types
     │   │   filter.ts
+    │   │   user.ts
     │   │
     │   └───interfaces
     │           category.ts
@@ -112,9 +131,15 @@ And then for SASS (if for some reason you want to create some more stying) `npm 
     │           credentials.ts
     │           notification.ts
     │           product.ts
-    │           user.ts
     │
     └───utility
             dummyData.ts
             testServer.ts
 ```
+
+## Pictures
+
+![img](./demo%20pics/homepage.png)
+![img](./demo%20pics/allproducts.png)
+![img](./demo%20pics/login.png)
+![img](./demo%20pics/checkout.png)
