@@ -135,6 +135,7 @@ export const getAllProducts = createAsyncThunk(
     "getAllProducts",
     async (_, thunkAPI) => {
         try {
+            console.log("täh")
             let products = await productService.getAllProducts();
             return products;
         } catch (e:any) {

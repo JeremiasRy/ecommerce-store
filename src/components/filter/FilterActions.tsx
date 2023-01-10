@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../hooks/reduxHook"
-import { sortByPrice } from "../../redux/reducers/productReducer"
+import { getAllProducts, getProductsPage, sortByPrice } from "../../redux/reducers/productReducer"
 import { FilterProps } from "../../types/filter"
 import RadioButton from "./RadioButton"
 
@@ -29,12 +29,13 @@ export default function FilterActions(props: FilterProps) {
             <input 
             className="all-products__filter-actions__text" 
             type="text" 
-            placeholder="Filter by name" 
+            placeholder="Search by name" 
             value={props.find} 
+            onFocus={() => dispatch(getAllProducts())}
+            onBlur={() => dispatch(getProductsPage(props.page))}
             onChange={(e) => props.setFind(e.currentTarget.value)}/>
-
             {props.find !== "" && 
-            <button className="button basic small wide" onClick={() => props.setFind("")}>
+            <button className="button basic small wide rem-filter" onClick={() => props.setFind("")}>
                 Remove filter
             </button>}
             <div className="change-page-buttons">
