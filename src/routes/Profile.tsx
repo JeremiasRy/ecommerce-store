@@ -14,7 +14,7 @@ export default function Profile() {
             navigate("/login");
             dispatch(addNotification(createNotification("Please login", "notification", 3)))
         }
-    }, [navigate, user]);
+    }, [dispatch, user, navigate]);
 
     return (
         <div className="profile-page">

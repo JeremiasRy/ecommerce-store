@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductForm from "../components/main/Productform";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import { addNotification, createNotification } from "../redux/reducers/notificationReducer";
@@ -19,7 +19,7 @@ export default function CreateProduct() {
             dispatch(addNotification(createNotification("Please login", "notification", 3)));
         }
         dispatch(getAllProducts())
-    }, [dispatch])
+    }, [dispatch, user, navigate])
     
     return (
         <>
