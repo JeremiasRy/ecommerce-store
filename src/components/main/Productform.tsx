@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { getAllCategories } from "../../redux/reducers/categoryReducer";
 import IProduct from "../../types/interfaces/product";
 
-export default function ProductForm(props: {submitAction:any, update:null|IProduct}) {
+export default function ProductForm(props: {submitAction:any, update:IProduct | undefined}) {
     const categories = useAppSelector(state => state.categories);
     const dispatch = useAppDispatch();
     const [title, setTitle] = useState("");
@@ -16,7 +16,7 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
 
     useEffect(() => {
         dispatch(getAllCategories());
-        if (props.update !== null) {
+        if (props.update !== undefined) { 
             setTitle(props.update.title);
             setPrice(props.update.price);
             setDescription(props.update.description);
@@ -31,13 +31,14 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
         setImg("")
     }
     function submitProduct() {
-        if (props.update !== null) {
+        if (props.update) {
             let upProduct = {
                 id: id,
                 title: title,
                 price: price,
                 description: description,
             }
+            console.log(upProduct);
             dispatch(props.submitAction(upProduct))
             return;
         }
@@ -58,7 +59,7 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
                 <p>Description</p>
                 <textarea value={description} onChange={(e) => setDescription(e.currentTarget.value)}/>
             </label>
-            {props.update === null && 
+            {!props.update && 
             <>
             <label>
                 <p>Category</p>
@@ -77,7 +78,7 @@ export default function ProductForm(props: {submitAction:any, update:null|IProdu
                 {images.map(img => <li key={img}>{img} <button className="button small remove" onClick={() => setImages(images.filter(image => image !== img))}>Remove url</button></li>)}
             </ul></>
             }
-            <button className="button basic" onClick={submitProduct}>{props.update === null ? "Submit" : "Update"}</button>
+            <button className="button basic" onClick={submitProduct}>{!props.update ? "Submit" : "Update"}</button>
         </div>
     )
 }

@@ -20,25 +20,16 @@ const productReducer = createSlice({
         },
         filterByName: (state, action) => {
             return state.filter(product => product.title.toLowerCase().includes(action.payload.toLowerCase()));
-        },
-        addNewProduct: (state, action) => {
-            return [...state, action.payload]
-        },
-        updateProducts: (state, action) => {
-            return state.map(product => product.id === action.payload.id ? action.payload : product);
-        },
-        deleteProductLocal: (state, action) => {
-            return state.filter(product => product.id !== action.payload);
         }
     },
     extraReducers: (build) => {
-        build.addCase(getProductsPage.fulfilled, (state, action) => {
+        build.addCase(getProductsPage.fulfilled, (_, action) => {
             return action.payload;
         })
-        build.addCase(getProduct.fulfilled, (state, action) => {
+        build.addCase(getProduct.fulfilled, (_, action) => {
             return [action.payload];
         })
-        build.addCase(getProductsByCategory.fulfilled, (state, action) => {
+        build.addCase(getProductsByCategory.fulfilled, (_, action) => {
             return action.payload;
         })
         build.addCase(addProduct.fulfilled, () => {
@@ -47,18 +38,20 @@ const productReducer = createSlice({
         build.addCase(updateProduct.fulfilled, () => {
             return;
         })
+        build.addCase(getAllProducts.fulfilled, (_, action) => {
+            return action.payload;
+        })
     }
 })
 
 export default productReducer.reducer;
-export const { sortByPrice, filterByName, addNewProduct, updateProducts, deleteProductLocal } = productReducer.actions;
+export const { sortByPrice, filterByName, } = productReducer.actions;
 
 export const addProduct = createAsyncThunk(
     'addProducts',
     async (product:ISubmitProduct, thunkAPI) => {
-        if (product.price < 0) {
-            thunkAPI.dispatch(addNotification(createNotification(["Price must be positive"], "alert", 3)));
-            return;
+        if (product.price <= 0 || product.description === "" || product.title === ""  || product.images.length === 0) {
+            thunkAPI.dispatch(addNotification(createNotification("Please fill out the product info correctly", "notification", 3)))
         }
         try {
             let result = await productService.createProduct(product);
@@ -68,7 +61,6 @@ export const addProduct = createAsyncThunk(
             const error = e as AxiosError
             const response = error.response as AxiosResponse;
             const messageArr = response.data.message as [];
-    
             thunkAPI.dispatch(addNotification(createNotification(messageArr, "notification", 5)))
         }
     }
@@ -77,8 +69,9 @@ export const addProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
     'updateProduct',
     async (update:ISubmitProduct, thunkAPI) => {
+        console.log(update.id)
         try {
-            await productService.updateProduct(update, update.id as number)
+            await productService.updateProduct(update, Number(update.id))
             thunkAPI.dispatch(addNotification(createNotification(`Succesfully updated product ${update.title}`, "notification", 3)))
             thunkAPI.dispatch(getProductsPage(1));
         } catch (e:any) {
@@ -91,23 +84,22 @@ export const deleteProduct = createAsyncThunk(
     "deleteProduct",
     async (id:number, thunkAPI) => {
         let allProducts:IProduct[] = await productService.getAllProducts();
-    
-    if (!allProducts.some(product => product.id === id)) {
-        thunkAPI.dispatch(addNotification(createNotification("Can't find product to delete", "alert", 3)))
-        return
-    }
-    try {
-        await productService.deleteProduct(id);
-        thunkAPI.dispatch(addNotification(createNotification("Product deleted", "notification", 3)))
-    } catch (e:any) {
-        thunkAPI.dispatch(addNotification(createNotification(`Something went wrong ${e.message}`, "alert", 3)))
-    }
+        if (!allProducts.some(product => product.id === id)) {
+            thunkAPI.dispatch(addNotification(createNotification("Can't find product to delete", "alert", 3)))
+            return
+        }
+        try {
+            await productService.deleteProduct(id);
+            thunkAPI.dispatch(addNotification(createNotification("Product deleted", "notification", 3)))
+        } catch (e:any) {
+            thunkAPI.dispatch(addNotification(createNotification(`Something went wrong ${e.message}`, "alert", 3)))
+        }
     }
 )
 
 
 export const getProductsPage = createAsyncThunk(
-    "getAllProducts",
+    "getProductsPage",
     async (page:number, thunkAPI) => {
         try {
             let products = await productService.getProductsPage(page - 1);
@@ -119,23 +111,34 @@ export const getProductsPage = createAsyncThunk(
 )
 export const getProduct = createAsyncThunk(
     "getProduct",
-    async (id:number) => {
+    async (id:number, thunkAPI) => {
         try {
             let product = await productService.getProduct(id);
             return product;
         } catch (e:any) {
-            throw new Error(e.message)
+            thunkAPI.dispatch(addNotification(createNotification(["Something went wrong while fetching a product", e.message], "notification", 3)))
         }
     }
 )
 export const getProductsByCategory = createAsyncThunk(
     "getProductsByCategory",
-    async (categoryId:number) => {
+    async (categoryId:number, thunkAPI) => {
         try {
             let products = await categoryService.getProductsByCategory(categoryId);
             return products;
         } catch (e:any) {
-            throw new Error(e.message)
+            thunkAPI.dispatch(addNotification(createNotification(["Something went wrong while fetching a products by category", e.message], "notification", 3)))
         }
+    }
+)
+export const getAllProducts = createAsyncThunk(
+    "getAllProducts",
+    async (_, thunkAPI) => {
+        try {
+            let products = await productService.getAllProducts();
+            return products;
+        } catch (e:any) {
+            thunkAPI.dispatch(addNotification(createNotification(["Something went wrong while fetching all the products:", e.message], "notification", 3)))
+        }   
     }
 )

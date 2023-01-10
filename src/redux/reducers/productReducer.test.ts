@@ -57,6 +57,7 @@ describe("Create, delete and update", () => {
     })
     test("Create invalid item", async () => {
         await store.dispatch(addProduct(dummyData.invalidNewItem));
+        await store.dispatch(getProductsPage(1));
         expect(store.getState().products.length).toBe(4);
     })
     test("Update product", async () => {
