@@ -9,6 +9,7 @@ export default function Products() {
     const [find, setFind] = useState("");
     const [page, setPage] = useState(1);
     const products = useAppSelector(state => state.products);
+    const loading = useAppSelector(state => state.loading);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -30,6 +31,7 @@ export default function Products() {
             page={page}
             setPage={setPage}
             productsOnCurrentPage={products.length}/>
+            {loading && <h4>Loading all products for search...</h4>}
 
             <div className="main__products-wrapper">
                 {find !== "" && products.length === 0 && 

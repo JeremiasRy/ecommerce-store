@@ -31,8 +31,8 @@ export default function FilterActions(props: FilterProps) {
             type="text" 
             placeholder="Search by name" 
             value={props.find} 
-            onFocus={() => dispatch(getAllProducts())}
-            onBlur={() => dispatch(getProductsPage(props.page))}
+            onFocus={() => dispatch(getAllProducts())} //Get all products for searching
+            onBlur={() => dispatch(getProductsPage(props.page))} //return to the page after searching
             onChange={(e) => props.setFind(e.currentTarget.value)}/>
             {props.find !== "" && 
             <button className="button basic small wide rem-filter" onClick={() => props.setFind("")}>

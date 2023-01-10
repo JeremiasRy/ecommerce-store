@@ -30,6 +30,7 @@ export const refreshLogin = createAsyncThunk(
     'refreshLogin',
     async (refreshToken:string, thunkAPI) => {
         try {
+            thunkAPI.dispatch(addNotification(createNotification("Logging in...", "notification", 5)));
             let result = await userService.refresh(refreshToken);
             let user = await userService.getUser(result.access_token);
             thunkAPI.dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));
@@ -45,6 +46,7 @@ export const login = createAsyncThunk(
     'login',
     async (credentials:ICredentials, thunkAPI) => {
         try {
+            thunkAPI.dispatch(addNotification(createNotification("Logging in...", "notification", 5)));
             let result = await userService.login(credentials);
             let user = await userService.getUser(result.access_token);
             thunkAPI.dispatch(addNotification(createNotification(`${user.name} logged in!`, "notification", 3)));

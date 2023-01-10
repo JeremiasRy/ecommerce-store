@@ -4,6 +4,7 @@ import productService from "../../services/product";
 import categoryService from "../../services/category";
 import { addNotification, createNotification } from "./notificationReducer";
 import { AxiosError, AxiosResponse } from "axios";
+import { actionDone, loading } from "./loadingReducer";
 
 const initialState:IProduct[] = [];
 
@@ -135,8 +136,9 @@ export const getAllProducts = createAsyncThunk(
     "getAllProducts",
     async (_, thunkAPI) => {
         try {
-            console.log("täh")
+            thunkAPI.dispatch(loading());
             let products = await productService.getAllProducts();
+            thunkAPI.dispatch(actionDone());
             return products;
         } catch (e:any) {
             thunkAPI.dispatch(addNotification(createNotification(["Something went wrong while fetching all the products:", e.message], "notification", 3)))

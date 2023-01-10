@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import categoryReducer from './reducers/categoryReducer';
 import checkoutReducer from './reducers/checkoutReducer';
+import loadingReducer from './reducers/loadingReducer';
 import notificationReducer from './reducers/notificationReducer';
 import productReducer from './reducers/productReducer';
 import userReducer from './reducers/userReducer';
@@ -14,6 +15,7 @@ export const createStore = () => {
       categories: categoryReducer,
       checkout: checkoutReducer,
       notification: notificationReducer,
+      loading: loadingReducer
     },
   });
 }

@@ -210,6 +210,10 @@ main h1 {
   row-gap: 20px;
 }
 
+.all-products h4 {
+  text-align: center;
+}
+
 .single-product h2 {
   text-align: center;
 }
