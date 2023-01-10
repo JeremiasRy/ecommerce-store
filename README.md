@@ -13,7 +13,7 @@ I made all the styling myself from scratch thus it's pretty rough looking, but I
 
 ## Live site
 
-Deployed to [netlify](strong-daffodil-738c21.netlify.app) 
+Deployed to [netlify](https://sweet-panda-ef92e4.netlify.app/) 
 
 ## Features
 
