@@ -48,10 +48,11 @@ export default productReducer.reducer;
 export const { sortByPrice, filterByName, } = productReducer.actions;
 
 export const addProduct = createAsyncThunk(
-    'addProducts',
+    'addProduct',
     async (product:ISubmitProduct, thunkAPI) => {
         if (product.price <= 0 || product.description === "" || product.title === ""  || product.images.length === 0) {
             thunkAPI.dispatch(addNotification(createNotification("Please fill out the product info correctly", "notification", 3)))
+            return;
         }
         try {
             let result = await productService.createProduct(product);
@@ -69,7 +70,6 @@ export const addProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
     'updateProduct',
     async (update:ISubmitProduct, thunkAPI) => {
-        console.log(update.id)
         try {
             await productService.updateProduct(update, Number(update.id))
             thunkAPI.dispatch(addNotification(createNotification(`Succesfully updated product ${update.title}`, "notification", 3)))
