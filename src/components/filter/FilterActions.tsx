@@ -10,10 +10,14 @@ export default function FilterActions(props: FilterProps) {
             <div className="all-products__filter-actions__sort-direction">
                 <button 
                 className="button basic" 
-                onClick={() => dispatch(sortByPrice(props.direction))}>
+                onClick={() => dispatch(sortByPrice(props.direction))}
+                onBlur={() => dispatch(getProductsPage(props.page))}>
                     Sort
                 </button>
-                <div className="sort-direction__radio-buttons">
+                <div 
+                className="sort-direction__radio-buttons" 
+                tabIndex={1} 
+                onClick={() => dispatch(getAllProducts())}>
                     <RadioButton 
                     label="ascending" 
                     value="asc" 
