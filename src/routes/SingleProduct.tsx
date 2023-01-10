@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
-import SingleProductInfo from "../components/main/SingleProductInfo";
-import SlideShow from "../components/Slideshow";
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHook";
 import { getProduct } from "../redux/reducers/productReducer";
+import SingleProductInfo from "../components/main/SingleProductInfo";
+import SlideShow from "../components/Slideshow";
 
 export default function SingleProduct() {
     const { id } = useParams();

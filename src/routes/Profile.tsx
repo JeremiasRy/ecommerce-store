@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook"
+import { addNotification, createNotification } from "../redux/reducers/notificationReducer";
 import { logout } from "../redux/reducers/userReducer"
 
 export default function Profile() {
@@ -10,7 +11,8 @@ export default function Profile() {
     
     useEffect(() => {
         if (user === null) {
-            navigate("/");
+            navigate("/login");
+            dispatch(addNotification(createNotification("Please login", "notification", 3)))
         }
     }, [navigate, user]);
 
