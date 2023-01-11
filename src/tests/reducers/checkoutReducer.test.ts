@@ -1,7 +1,7 @@
 import { ThunkMiddleware, MiddlewareArray, AnyAction } from "@reduxjs/toolkit";
-import { createStore, RootState } from "../store";
+import { createStore, RootState } from "../../redux/store";
 import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
-import { addToCart, removeFromCart } from "./checkoutReducer";
+import { addToCart, removeFromCart } from "../../redux/reducers/checkoutReducer";
 import dummyData from "../../utility/dummyData";
 
 let store: ToolkitStore<RootState, AnyAction, [ThunkMiddleware<RootState, AnyAction, undefined>]>;
